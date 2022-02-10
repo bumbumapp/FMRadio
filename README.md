@@ -20,11 +20,7 @@ Internet Radio Player is a simple app for listening to radio broadcasts or audio
 The recording feature is currently in beta. The record size limit is 50 MB.
 Records are stored in /Android/data/io.github.vladimirmi.internetradioplayer/files/Records
  
-## Install
 
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="192">][link]
-
-[link]: https://play.google.com/store/apps/details?id=io.github.vladimirmi.internetradioplayer
     
 ## License
 
