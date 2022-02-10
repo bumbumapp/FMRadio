@@ -25,7 +25,7 @@ Records are stored in /Android/data/io.github.vladimirmi.internetradioplayer/fil
     
 ## Thanks
 
-MIT License
+[MIT License]{https://github.com/VladimirMi/InternetRadioPlayer/blob/master/LICENSE}
 
 Copyright (c) 2018 Vladimir Mikhalev
 
