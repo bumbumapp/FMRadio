@@ -21,19 +21,20 @@ ext.versionMinor = 3
 ext.versionPatch = 2
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 30
+    useLibrary 'org.apache.http.legacy'
+    buildToolsVersion '30.0.3'
     defaultConfig {
-        applicationId "io.github.vladimirmi.internetradioplayer"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode generateVersionCode()
-        versionName generateVersionName()
+        applicationId "com.bumbumapps.radiofm"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 4
+        versionName "3.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [toothpick_registry_package_name: 'io.github.vladimirmi.internetradioplayer',
+                arguments = [toothpick_registry_package_name: 'com.bumbumapps.radiofm',
                              "room.schemaLocation"          :
                                      "$projectDir/schemas".toString()]
             }
@@ -43,6 +44,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-v4:24.0.0'
     }
     kapt { generateStubs = true }
     buildTypes {
@@ -85,7 +89,7 @@ dependencies {
     implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
     implementation "androidx.preference:preference:1.1.0-rc01"
     implementation "androidx.legacy:legacy-preference-v14:1.0.0"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta1"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
     //DB
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
@@ -118,6 +122,9 @@ dependencies {
     //ExoPlayer
     implementation "com.google.android.exoplayer:exoplayer-core:$EXOPLAYER_VERSION"
     implementation "com.google.android.exoplayer:extension-okhttp:$EXOPLAYER_VERSION"
+
+    //ads
+    implementation 'com.google.android.gms:play-services-ads:8.4.0'
 
     implementation project(':playerbutton')
 }

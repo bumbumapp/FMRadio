@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
+    android:background="@color/blue_500"
     android:layout_width="match_parent"
     >
 
-    <io.github.vladimirmi.internetradioplayer.ui.ColorSeekBar
+    <io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar
         android:id="@+id/redBar"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -20,7 +21,7 @@
         tools:progress="100"
         />
 
-    <io.github.vladimirmi.internetradioplayer.ui.ColorSeekBar
+    <io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar
         android:id="@+id/greenBar"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -33,7 +34,7 @@
         tools:progress="150"
         />
 
-    <io.github.vladimirmi.internetradioplayer.ui.ColorSeekBar
+    <io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar
         android:id="@+id/blueBar"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -53,6 +54,7 @@
         android:id="@+id/redValue"
         android:minWidth="30sp"
         android:padding="4dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="255"
@@ -65,6 +67,7 @@
         android:layout_marginTop="8dp"
         android:minWidth="30sp"
         android:padding="4dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/redValue"
         tools:text="255"
@@ -78,6 +81,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
         android:minWidth="30sp"
+        android:textColor="@color/white"
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greenValue"

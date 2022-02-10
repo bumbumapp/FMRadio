@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name" translatable="false">Radio Player</string>
-    <string name="full_app_name" translatable="false">Internet Radio Player</string>
+    <string name="app_name" translatable="false">FM Radio</string>
+    <string name="full_app_name" translatable="false">FM Radio</string>
 
     <string name="msg_net_error">No connection</string>
     <string name="msg_add_shortcut_success">Station shortcut added</string>
@@ -102,6 +102,7 @@
     <string name="max" translatable="false">max</string>
 
     <string name="recording">Recording…</string>
+    <string name="settings" translatable="false">Settings</string>
 
     <plurals name="plural_second">
         <item quantity="one">@string/second</item>

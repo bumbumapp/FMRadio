@@ -4,14 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:padding="20dp"
     >
 
     <EditText
         android:id="@+id/editTextView"
         android:layout_width="match_parent"
+        android:shadowColor="@color/white"
+        android:background="@drawable/edit_text_background"
         android:layout_height="wrap_content"
         android:inputType="textNoSuggestions"
+        android:textColor="@color/dark_color"
+        android:textColorHint="#B31F1C2C"
         tools:ignore="Autofill,LabelFor"
         />
 

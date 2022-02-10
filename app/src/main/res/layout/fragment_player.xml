@@ -24,7 +24,7 @@
         android:id="@+id/mediaInfoVp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="?attr/colorSurface"
+        android:background="@color/blue_500"
         app:layout_constraintBottom_toTopOf="@id/controlsView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,9 +50,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintVertical_bias="1.0"
-        />
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/statusTv"
@@ -62,9 +62,10 @@
         android:paddingRight="16dp"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        android:textColor="?attr/colorOnPrimary"
+        android:textColor="#80FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
         tools:text="playing"
         />
 
@@ -73,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="true"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/mediaTitleView"
@@ -88,11 +90,21 @@
         android:foreground="?actionBarItemBackground"
         android:scaleType="fitXY"
         android:src="@drawable/ic_collapse"
-        android:tint="?attr/colorOnPrimary"
+        android:tint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnusedAttribute"
         />
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:layout_constraintBottom_toBottomOf="@id/controlsView"
+        ads:adSize="FULL_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        tools:ignore="MissingConstraints">
 
+    </com.google.android.gms.ads.AdView>
 </androidx.constraintlayout.widget.ConstraintLayout>

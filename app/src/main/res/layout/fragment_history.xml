@@ -13,6 +13,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingTop="8dp"
+        android:background="@color/blue_500"
         android:paddingBottom="8dp"
         tools:listitem="@layout/item_station"
         />
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="center"
+        android:textColor="@color/white"
         android:text="@string/history_placeholder"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:visibility="gone"

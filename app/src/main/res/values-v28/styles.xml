@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">#99FFFFFF</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="closeIcon">@drawable/ic_close</item>
+        <item name="android:outlineSpotShadowColor">@color/white</item>
+    </style>
+
+
+</resources>

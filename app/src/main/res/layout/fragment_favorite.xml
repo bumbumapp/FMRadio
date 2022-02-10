@@ -14,16 +14,18 @@
         android:layout_weight="1"
         />
 
-    <io.github.vladimirmi.internetradioplayer.ui.FilledTabLayout
+    <io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout
         android:id="@+id/navigationTl"
         style="@style/Widget.MaterialComponents.TabLayout.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
         android:visibility="gone"
-        app:tabBackground="@color/primary_variant"
-        app:tabIndicatorColor="@color/secondary"
+        app:tabBackground="@color/dark_color"
+        app:tabIndicatorColor="#33009688"
         app:tabIndicatorGravity="top"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="#66FFFFFF"
         app:tabIndicatorHeight="4dp"
         app:tabsNumber="2"
         tools:ignore="UnusedAttribute"

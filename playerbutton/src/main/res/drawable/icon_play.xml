@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="48dp"
-    android:viewportHeight="48.0"
-    android:viewportWidth="48.0">
-    <group
-        android:name="group"
-        android:pivotX="24"
-        android:pivotY="24">
-        <path
-            android:name="up"
-            android:fillColor="#fafafa"
-            android:pathData="@string/play_up"/>
-        <path
-            android:name="dw"
-            android:fillColor="#fafafa"
-            android:pathData="@string/play_dw"/>
-    </group>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="6dp"
+    android:height="7dp"
+    android:viewportWidth="6"
+    android:viewportHeight="7">
+  <group
+      android:name="group"
+      android:pivotX="20"
+      android:pivotY="24">
+    <path
+        android:pathData="M5.49475,2.57324L1.50076,0.14209C0.83209,-0.26465 0,0.25 0,1.06885L0,5.93091C0,6.75098 0.83209,7.2644 1.50076,6.85767L5.49475,4.42773C6.16843,4.01782 6.16843,2.98315 5.49475,2.57324"
+        android:fillColor="#FFFFFF"
+        android:name="up"/>
+    <path
+        android:pathData="M5.49475,2.57324L1.50076,0.14209C0.83209,-0.26465 0,0.25 0,1.06885L0,5.93091C0,6.75098 0.83209,7.2644 1.50076,6.85767L5.49475,4.42773C6.16843,4.01782 6.16843,2.98315 5.49475,2.57324"
+        android:fillColor="#FFFFFF"
+        android:name="dw"/>
+  </group>
+
 </vector>

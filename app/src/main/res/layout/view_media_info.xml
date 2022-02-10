@@ -20,6 +20,7 @@
         android:drawableStart="@drawable/ic_date"
         app:drawableTint="?attr/colorOnSurface"
         android:drawablePadding="8dp"
+        android:textColor="@color/white"
         android:drawableLeft="@drawable/ic_date"
         />
 
@@ -33,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/dateTv"
         android:drawableStart="@drawable/ic_group"
         app:drawableTint="?attr/colorOnSurface"
+        android:textColor="@color/white"
         android:drawablePadding="8dp"
         android:drawableLeft="@drawable/ic_group"
         />
@@ -42,6 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintTop_toBottomOf="@id/groupTv"
         tools:text="Station genre"
@@ -56,13 +59,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintTop_toBottomOf="@id/genreTv"
         tools:text="22100 kHz, 128 kbps"
-        android:drawableStart="@drawable/ic_settings"
+        android:drawableStart="@drawable/settings_ic"
         app:drawableTint="?attr/colorOnSurface"
         android:drawablePadding="8dp"
-        android:drawableLeft="@drawable/ic_settings"
+        android:drawableLeft="@drawable/settings_ic"
         />
 
     <TextView
@@ -70,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintTop_toBottomOf="@id/specsTv"
         tools:text="Station location"
@@ -90,6 +95,7 @@
         android:drawableStart="@drawable/ic_globe"
         app:drawableTint="?attr/colorOnSurface"
         android:drawablePadding="8dp"
+        android:textColor="@color/white"
         android:drawableLeft="@drawable/ic_globe"
         />
 

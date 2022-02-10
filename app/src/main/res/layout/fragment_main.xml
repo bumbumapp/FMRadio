@@ -10,7 +10,7 @@
     android:orientation="vertical"
     >
 
-    <io.github.vladimirmi.internetradioplayer.ui.FilledTabLayout
+    <io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout
         android:id="@+id/mainTl"
         style="@style/Widget.MaterialComponents.TabLayout.Colored"
         android:layout_width="match_parent"
@@ -19,9 +19,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/secondary"
+        app:tabIndicatorColor="#33009688"
         app:tabIndicatorHeight="6dp"
         app:tabsNumber="3"
+        app:tabTextColor="#66FFFFFF"
+        android:background="@color/dark_color"
+        app:tabSelectedTextColor="@color/white"
         tools:ignore="UnusedAttribute"
         />
 
@@ -29,6 +32,7 @@
         android:id="@+id/mainPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/blue_500"
         />
 
 </LinearLayout>

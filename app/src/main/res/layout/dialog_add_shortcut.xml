@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:padding="24dp"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="24dp">
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -12,8 +12,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:button="@null"
+        android:textColor="@color/dark_color"
         android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+        android:drawableTint="@color/dark_color"
         android:text="@string/dialog_start_playback"
         />
 

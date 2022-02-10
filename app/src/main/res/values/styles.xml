@@ -1,17 +1,18 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimary">@color/pause</item>
+        <item name="colorPrimaryDark">@color/dark_color</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary_variant</item>
-        <item name="colorOnSecondary">@color/on_secondary</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/on_surface</item>
-        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSecondary">#B3009688</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">#96FFFFFF</item>
+        <item name="colorSurface">#F4E8E8</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
@@ -26,5 +27,36 @@
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
         <item name="android:popupBackground">@color/white</item>
     </style>
+    <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">#FFFFFF</item>
+        <item name="android:progressTint">@color/white</item>
+        <item name="android:thumbTint">#4D009688</item>
+    </style>
+    <style name="MySeekBarSettings" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressBackgroundTint">#E1D0D0</item>
+        <item name="android:progressTint">@color/blue_500</item>
+        <item name="android:thumbTint">@color/dark_color</item>
+    </style>
+
+    <style name="spinnerTheme">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">#99FFFFFF</item>
+        <item name="colorButtonNormal">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="closeIcon">@drawable/ic_close</item>
+        <item name="android:shadowColor">@color/white</item>
+        <item name="android:strokeColor">@color/white</item>
+        <item name="colorSecondary" tools:targetApi="n_mr1">@color/white</item>
+        <item name="android:outlineSpotShadowColor">@color/white</item>
+        <item name="android:outlineAmbientShadowColor">@color/white</item>
+    </style>
+
+
+
 
 </resources>

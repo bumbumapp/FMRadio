@@ -1,113 +1,115 @@
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.github.vladimirmi.internetradioplayer">
+    package="io.bumbumapps.radio.internetradioplayer">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name="io.github.vladimirmi.internetradioplayer.App"
+        android:name="io.bumbumapps.radio.internetradioplayer.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/radio"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/radio"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="UnusedAttribute">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity
-            android:name="io.github.vladimirmi.internetradioplayer.presentation.root.RootActivity"
-            android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:screenOrientation="portrait"
+            android:name="io.bumbumapps.radio.internetradioplayer.presentation.settings.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name="io.bumbumapps.radio.internetradioplayer.presentation.root.RootActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@style/AppTheme.Splash">
-
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash"
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="https"/>
-                <data android:scheme="http"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:mimeType="audio/x-scpls"/>
-                <data android:mimeType="audio/mpegurl"/>
-                <data android:mimeType="audio/x-mpegurl"/>
-                <data android:mimeType="audio/x-pn-realaudio"/>
-                <data android:mimeType="application/pls+xml"/>
-                <data android:mimeType="application/x-mpegurl"/>
-                <data android:mimeType="application/vnd.apple.mpegurl"/>
-                <data android:mimeType="application/vnd.apple.mpegurl.audio"/>
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:mimeType="audio/x-scpls" />
+                <data android:mimeType="audio/mpegurl" />
+                <data android:mimeType="audio/x-mpegurl" />
+                <data android:mimeType="audio/x-pn-realaudio" />
+                <data android:mimeType="application/pls+xml" />
+                <data android:mimeType="application/x-mpegurl" />
+                <data android:mimeType="application/vnd.apple.mpegurl" />
+                <data android:mimeType="application/vnd.apple.mpegurl.audio" />
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="https"/>
-                <data android:scheme="http"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*.m3u"/>
-                <data android:pathPattern=".*.m3u8"/>
-                <data android:pathPattern=".*.pls"/>
-                <data android:pathPattern=".*.ram"/>
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:scheme="file" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.m3u" />
+                <data android:pathPattern=".*.m3u8" />
+                <data android:pathPattern=".*.pls" />
+                <data android:pathPattern=".*.ram" />
                 <!-- https://www.internet-radio.com workaround -->
-                <data android:pathPrefix="/servers/tools/playlistgenerator"/>
+                <data android:pathPrefix="/servers/tools/playlistgenerator" />
             </intent-filter>
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <data android:scheme="content"/>
-                <data android:host="*"/>
-                <data android:mimeType="audio/x-scpls"/>
-                <data android:mimeType="audio/mpegurl"/>
-                <data android:mimeType="audio/x-mpegurl"/>
-                <data android:mimeType="audio/x-pn-realaudio"/>
-                <data android:mimeType="application/pls+xml"/>
-                <data android:mimeType="application/x-mpegurl"/>
-                <data android:mimeType="application/x-mpegurl"/>
-                <data android:mimeType="application/vnd.apple.mpegurl"/>
-                <data android:mimeType="application/vnd.apple.mpegurl.audio"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="content" />
+                <data android:host="*" />
+                <data android:mimeType="audio/x-scpls" />
+                <data android:mimeType="audio/mpegurl" />
+                <data android:mimeType="audio/x-mpegurl" />
+                <data android:mimeType="audio/x-pn-realaudio" />
+                <data android:mimeType="application/pls+xml" />
+                <data android:mimeType="application/x-mpegurl" />
+                <data android:mimeType="application/x-mpegurl" />
+                <data android:mimeType="application/vnd.apple.mpegurl" />
+                <data android:mimeType="application/vnd.apple.mpegurl.audio" />
             </intent-filter>
         </activity>
 
         <service
-            android:name="io.github.vladimirmi.internetradioplayer.data.service.PlayerService"
+            android:name="io.bumbumapps.radio.internetradioplayer.data.service.PlayerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.media.browse.MediaBrowserService"/>
+                <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
         </service>
-
         <service
-            android:name="io.github.vladimirmi.internetradioplayer.data.service.recorder.RecorderService"
-            android:exported="false">
-        </service>
+            android:name="io.bumbumapps.radio.internetradioplayer.data.service.recorder.RecorderService"
+            android:exported="false"></service>
 
         <receiver android:name="androidx.media.session.MediaButtonReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
 
@@ -118,8 +120,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"/>
+                android:resource="@xml/filepaths" />
         </provider>
+
     </application>
 
 </manifest>

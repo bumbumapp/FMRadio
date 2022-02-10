@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#DE221F35"
     android:layout_height="match_parent"
     >
 
@@ -13,6 +14,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingTop="16dp"
+        android:background="@color/blue_500"
         android:paddingBottom="16dp"
         tools:listitem="@layout/item_record"
         />

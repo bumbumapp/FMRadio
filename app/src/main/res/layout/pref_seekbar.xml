@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+        android:textColor="@color/dark_color"
         android:layout_marginBottom="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         />
@@ -22,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/dark_color"
         android:layout_marginBottom="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         />
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:max="15"
+        style="@style/MySeekBarSettings"
         />
 
 </LinearLayout>

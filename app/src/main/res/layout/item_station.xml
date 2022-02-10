@@ -7,12 +7,12 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    android:padding="8dp"
     android:elevation="2dp"
+    android:background="@color/blue_500"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     tools:ignore="UnusedAttribute"
-    android:gravity="center"
+
     >
 
     <TextView
@@ -22,8 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:ellipsize="end"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:maxLines="1"
         android:textStyle="bold"
+        android:textColor="@color/white"
         tools:text="Speciess favere! A falsis, epos bassus pes."
         />
 
@@ -33,7 +37,18 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         tools:text="Music, Country"
         />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@color/white"/>
 </LinearLayout>
