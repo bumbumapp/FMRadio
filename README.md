@@ -1,6 +1,7 @@
 # Description
 
 Internet Radio Player is a simple app for listening to radio broadcasts or audio streams over the internet.
+MIT License
 ## Features
 
 - Search from the UberStations directory with more than 30000 live radio stations across the world.
