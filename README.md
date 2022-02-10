@@ -1,6 +1,7 @@
 # Description
 
 Internet Radio Player is a simple app for listening to radio broadcasts or audio streams over the internet.
+
 [MIT License](https://github.com/VladimirMi/InternetRadioPlayer/blob/master/LICENSE)
 ## Features
 
