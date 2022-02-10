@@ -1,7 +1,7 @@
 # Description
 
 Internet Radio Player is a simple app for listening to radio broadcasts or audio streams over the internet.
-MIT License
+[MIT License](https://github.com/VladimirMi/InternetRadioPlayer/blob/master/LICENSE)
 ## Features
 
 - Search from the UberStations directory with more than 30000 live radio stations across the world.
@@ -25,7 +25,7 @@ Records are stored in /Android/data/io.github.vladimirmi.internetradioplayer/fil
     
 ## Thanks
 
-[MIT License]{https://github.com/VladimirMi/InternetRadioPlayer/blob/master/LICENSE}
+[MIT License](https://github.com/VladimirMi/InternetRadioPlayer/blob/master/LICENSE)
 
 Copyright (c) 2018 Vladimir Mikhalev
 
