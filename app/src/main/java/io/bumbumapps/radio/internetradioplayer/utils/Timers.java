@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 public  class  Timers {
 
     public static CountDownTimer timer(){
-        return new CountDownTimer(30000, 1000) {
+        return new CountDownTimer(180000, 1000) {
 
             public void onTick(long millisUntilFinished) {}
 

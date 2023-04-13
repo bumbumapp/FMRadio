@@ -27,8 +27,8 @@ android {
         applicationId "com.bumbumapps.radiofm"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 9
-        versionName "3.3.3"
+        versionCode 10
+        versionName "3.3.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
