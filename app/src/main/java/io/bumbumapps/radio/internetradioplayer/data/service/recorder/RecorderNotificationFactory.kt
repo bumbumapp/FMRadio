@@ -71,7 +71,7 @@ class RecorderNotificationFactory(private val service: Service) {
             putExtra(RecorderService.EXTRA_STOP_RECORD, "")
             data = uri
         }
-        return PendingIntent.getService(service, 0, intent, 0)
+        return PendingIntent.getService(service, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     }
 }
 

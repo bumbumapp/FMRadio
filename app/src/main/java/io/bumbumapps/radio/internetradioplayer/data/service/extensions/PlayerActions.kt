@@ -57,6 +57,7 @@ object PlayerActions {
     fun playPauseIntent(context: Context): PendingIntent {
         return MediaButtonReceiver.buildMediaButtonPendingIntent(context,
                 PlaybackStateCompat.ACTION_PLAY_PAUSE)
+
     }
 
     fun stopIntent(context: Context): PendingIntent {
@@ -71,10 +72,11 @@ object PlayerActions {
 
     fun previousIntent(context: Context): PendingIntent {
         return MediaButtonReceiver.buildMediaButtonPendingIntent(context,
-                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS)
+                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
+        )
     }
 
     fun sessionActivity(context: Context): PendingIntent {
-        return PendingIntent.getActivity(context, 0, Intent(context, RootActivity::class.java), 0)
+        return PendingIntent.getActivity(context, 0, Intent(context, RootActivity::class.java),  PendingIntent.FLAG_IMMUTABLE)
     }
 }

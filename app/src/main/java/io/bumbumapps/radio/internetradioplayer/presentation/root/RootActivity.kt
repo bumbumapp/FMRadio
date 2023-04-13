@@ -21,6 +21,8 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseActivity
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.drawer.DrawerFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.player.isExpanded
 import io.bumbumapps.radio.internetradioplayer.presentation.player.isHidden
+import io.bumbumapps.radio.internetradioplayer.utils.Globals.TIMER_FINISHED
+import io.bumbumapps.radio.internetradioplayer.utils.Timers
 import kotlinx.android.synthetic.main.activity_root.*
 import kotlinx.android.synthetic.main.view_toolbar.*
 import toothpick.Toothpick
@@ -57,6 +59,9 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
         drawerFragment.setUpPopubmenu()
         if (savedInstanceState != null || (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
             intent = null // stop redeliver old intent
+        }
+        if (!TIMER_FINISHED){
+            Timers.timer().start()
         }
     }
 

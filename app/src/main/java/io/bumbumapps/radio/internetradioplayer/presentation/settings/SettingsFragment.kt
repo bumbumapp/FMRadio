@@ -98,7 +98,7 @@ class SettingsFragment : PreferenceFragmentCompat(), BackPressListener {
 
     private fun createBackup() {
         val uri = backupRestoreHelper.createBackup()
-        val intent = ShareCompat.IntentBuilder.from(activity)
+        val intent = ShareCompat.IntentBuilder.from(activity!!)
                 .setType(BACKUP_TYPE)
                 .setSubject(getString(R.string.full_app_name))
                 .setStream(uri)

@@ -13,7 +13,7 @@ interface CoverArtService {
 
     companion object {
         const val HOST = "musicbrainz.org"
-        const val BASE_URL = "https://$HOST"
+        const val BASE_URL = "http://$HOST"
         const val RECORDING_ENDPOINT = "ws/2/recording"
         const val QUALITY_LOW = "250"
         const val QUALITY_MID = "500"
@@ -22,7 +22,7 @@ interface CoverArtService {
         const val FIELD_TITLE = "recording"
 
         fun getCoverArtUri(mbId: String, quality: String): String {
-            return "https://coverartarchive.org/release-group/$mbId/front-$quality"
+            return "http://coverartarchive.org/release-group/$mbId/front-$quality"
         }
     }
 

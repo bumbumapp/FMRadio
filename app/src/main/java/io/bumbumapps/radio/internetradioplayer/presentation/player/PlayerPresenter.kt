@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.presentation.player
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
@@ -80,12 +81,12 @@ class PlayerPresenter
                 .addTo(dataSubs)
     }
 
-    fun playPause() {
+    fun playPause(context: Context) {
         with(playerInteractor) {
             if (!isPlaying && !isNetAvail) {
                 view?.showSnackbar(R.string.msg_net_error)
             } else {
-                playPause()
+                playPause(context)
             }
         }
     }

@@ -3,7 +3,7 @@ package io.bumbumapps.radio.internetradioplayer
 import android.app.Application
 import com.bumbumapps.radiofm.FactoryRegistry
 import com.bumbumapps.radiofm.MemberInjectorRegistry
-import com.facebook.stetho.Stetho
+//import com.facebook.stetho.Stetho
 import io.bumbumapps.radio.internetradioplayer.data.utils.FileLoggingTree
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.di.module.AppModule
@@ -34,7 +34,7 @@ class App : Application() {
         Scopes.app.installModules(AppModule(this))
 
         if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
+//            Stetho.initializeWithDefaults(this)
             Timber.plant(FileLoggingTree.Builder(applicationContext)
                     .log(FileLoggingTree.Logs.ERROR)
                     .build()

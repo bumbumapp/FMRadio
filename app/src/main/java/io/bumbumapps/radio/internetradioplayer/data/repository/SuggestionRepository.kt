@@ -31,7 +31,7 @@ class SuggestionRepository
                 .subscribeOn(Schedulers.io())
     }
 
-    fun getRegularSuggestions(query: String): Single<out List<Suggestion>> {
+    fun getRegularSuggestions(query: String?): Single<out List<Suggestion>> {
         return uberStationsService.getSuggestions("*$query*")
                 .map { suggestions -> suggestions.result.map { Suggestion.Regular(it.keyword) } }
                 .subscribeOn(Schedulers.io())

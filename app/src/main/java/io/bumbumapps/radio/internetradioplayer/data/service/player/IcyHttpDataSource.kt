@@ -22,7 +22,7 @@ class IcyHttpDataSource(callFactory: Call.Factory,
         setRequestProperty(REQUEST_ICY_METADATA_HEADER, "1")
     }
 
-    override fun open(dataSpec: DataSpec): Long {
+    override fun open(dataSpec: DataSpec?): Long {
         val bytesToRead = super.open(dataSpec)
         var metadataWindow = 0
 

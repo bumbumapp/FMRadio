@@ -1,10 +1,12 @@
 package io.bumbumapps.radio.internetradioplayer.presentation.player
 
+
 import android.view.View
 import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.google.android.exoplayer2.util.Util
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
@@ -13,11 +15,15 @@ import io.bumbumapps.radio.internetradioplayer.domain.model.Record
 import io.bumbumapps.radio.internetradioplayer.extensions.*
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.root.RootView
+import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
 import io.bumbumapps.radio.internetradioplayer.utils.SimpleOnSeekBarChangeListener
 import kotlinx.android.synthetic.main.fragment_player.*
 import kotlinx.android.synthetic.main.view_controls.*
 import kotlinx.android.synthetic.main.view_media_title.*
 import toothpick.Toothpick
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+
 
 /**
  * Created by Vladimir Mikhalev 20.02.2019.
@@ -25,7 +31,6 @@ import toothpick.Toothpick
 class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
 
     override val layout = R.layout.fragment_player
-
     private var playerBehavior: BottomSheetBehavior<View>? = null
     private var isSeekEnabled = false
     private var isCoverArtEnabled = false
@@ -47,7 +52,9 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
         setupSeekBar()
         setupBehavior(view)
         setupInfo()
+        AdsLoader.displayInterstitial(requireContext())
     }
+
 
     private fun setupButtons() {
         favoriteIv.setOnClickListener { presenter.switchFavorite() }
@@ -56,11 +63,13 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
         stopBt.setOnClickListener { presenter.stop() }
         pointerIv.setOnClickListener { switchState() }
         playPauseBt.setOnClickListener {
-            presenter.playPause()
-            if (isSeekEnabled) presenter.seekTo(progressSb.progress)
+                 presenter.playPause(requireContext())
+                if (isSeekEnabled) presenter.seekTo(progressSb.progress)
+
         }
 
     }
+
 
     private fun setupSeekBar() {
         progressSb.setOnSeekBarChangeListener(object : SimpleOnSeekBarChangeListener() {

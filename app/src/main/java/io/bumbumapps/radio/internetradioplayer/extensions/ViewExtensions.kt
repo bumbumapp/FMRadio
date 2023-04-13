@@ -21,7 +21,6 @@ import androidx.dynamicanimation.animation.SpringForce
 /**
  * Created by Vladimir Mikhalev 17.11.2017.
  */
-
 fun runOnUiThread(action: () -> Unit) {
     val mainLooper = Looper.getMainLooper()
     if (Thread.currentThread().id != mainLooper.thread.id) {

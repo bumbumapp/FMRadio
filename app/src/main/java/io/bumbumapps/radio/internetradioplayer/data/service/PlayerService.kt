@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.data.service
 
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.media.MediaBrowserServiceCompat
+import androidx.media.session.MediaButtonReceiver
 import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import io.bumbumapps.radio.internetradioplayer.data.preference.Preferences
@@ -21,6 +23,7 @@ import io.bumbumapps.radio.internetradioplayer.domain.interactor.MediaInteractor
 import io.bumbumapps.radio.internetradioplayer.domain.model.Media
 import io.bumbumapps.radio.internetradioplayer.extensions.errorHandler
 import io.bumbumapps.radio.internetradioplayer.extensions.toUri
+import io.bumbumapps.radio.internetradioplayer.presentation.root.RootActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import toothpick.Toothpick
@@ -72,7 +75,9 @@ class PlayerService : MediaBrowserServiceCompat(), SessionCallback.Interface {
     }
 
     private fun initSession() {
-        session = MediaSessionCompat(this, javaClass.simpleName)
+        val sessionIntent = Intent(this, RootActivity::class.java)
+        val sessionPendingIntent = PendingIntent.getActivity(this, 0, sessionIntent, PendingIntent.FLAG_IMMUTABLE)
+        session = MediaSessionCompat(this, javaClass.simpleName, null,sessionPendingIntent)
         session.setCallback(SessionCallback(this))
         session.setSessionActivity(PlayerActions.sessionActivity(this))
         sessionToken = session.sessionToken
@@ -89,6 +94,7 @@ class PlayerService : MediaBrowserServiceCompat(), SessionCallback.Interface {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        MediaButtonReceiver.handleIntent(session, intent)
         if (intent == null) stopSelf()
         return Service.START_STICKY
     }

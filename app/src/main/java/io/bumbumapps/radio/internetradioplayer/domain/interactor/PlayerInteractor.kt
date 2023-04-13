@@ -1,10 +1,12 @@
 package io.bumbumapps.radio.internetradioplayer.domain.interactor
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import io.bumbumapps.radio.internetradioplayer.data.repository.PlayerRepository
 import io.bumbumapps.radio.internetradioplayer.data.utils.NetworkChecker
+import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -44,11 +46,12 @@ class PlayerInteractor
 
     fun play() = player.play()
 
-    fun playPause() {
+    fun playPause(context: Context) {
         if (isPlaying) {
             player.pause()
+            AdsLoader.showAds(context,null)
         } else {
-            player.play()
+            AdsLoader.showAds(context,player.play())
         }
     }
 

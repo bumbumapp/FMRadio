@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">musicbrainz.org</domain>
+        <domain includeSubdomains="true">coverartarchive.org</domain>
+        <domain includeSubdomains="true">api.dar.fm</domain>
+        <domain includeSubdomains="true">stream.dar.fm</domain>
+        <domain includeSubdomains="true">stream.laut.fm</domain>
+        <domain includeSubdomains="true">listen.radyofenomen.com</domain>
+        <domain includeSubdomains="true">radyo.yayin.com.tr</domain>
+        <domain includeSubdomains="true">radyoavrasya.radyolarburada.com</domain>
+
+
+
+    </domain-config>
+</network-security-config>
