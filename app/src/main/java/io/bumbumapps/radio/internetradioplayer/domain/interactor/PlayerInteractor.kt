@@ -49,9 +49,9 @@ class PlayerInteractor
     fun playPause(context: Context) {
         if (isPlaying) {
             player.pause()
-            AdsLoader.showAds(context,null)
+            AdsLoader.showAds(context){}
         } else {
-            AdsLoader.showAds(context,player.play())
+            AdsLoader.showAds(context){player.play()}
         }
     }
 

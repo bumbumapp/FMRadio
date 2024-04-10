@@ -62,7 +62,7 @@ class DataFragment : BaseFragment<DataPresenter, DataView>(), DataView {
     private fun setupDataRecycler() {
         dataRv.adapter = dataAdapter
         dataRv.layoutManager = LinearLayoutManager(requireContext())
-        dataAdapter.onItemClickListener = { presenter.selectMedia(it) }
+        dataAdapter.onItemClickListener = { presenter.selectMedia(it,requireContext()) }
     }
 
     private fun setupSwipeToRefresh() {

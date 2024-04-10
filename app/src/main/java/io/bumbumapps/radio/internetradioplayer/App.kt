@@ -3,6 +3,7 @@ package io.bumbumapps.radio.internetradioplayer
 import android.app.Application
 import com.bumbumapps.radiofm.FactoryRegistry
 import com.bumbumapps.radiofm.MemberInjectorRegistry
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 //import com.facebook.stetho.Stetho
 import io.bumbumapps.radio.internetradioplayer.data.utils.FileLoggingTree
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
@@ -22,7 +23,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         if (BuildConfig.DEBUG) {
             Toothpick.setConfiguration(Configuration.forDevelopment().preventMultipleRootScopes())
         } else {

@@ -74,7 +74,7 @@ class ManualSearchFragment : BaseFragment<ManualSearchPresenter, ManualSearchVie
     private fun setupStations() {
         stationsRv.layoutManager = LinearLayoutManager(context)
         stationsRv.adapter = dataAdapter
-        dataAdapter.onItemClickListener = { presenter.selectMedia(it) }
+        dataAdapter.onItemClickListener = { presenter.selectMedia(it,requireContext()) }
 
         stationsRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

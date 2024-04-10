@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.domain.interactor
 
+import android.content.Context
 import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import io.bumbumapps.radio.internetradioplayer.data.net.UberStationsService
@@ -7,6 +8,7 @@ import io.bumbumapps.radio.internetradioplayer.data.repository.FavoritesReposito
 import io.bumbumapps.radio.internetradioplayer.data.repository.SearchRepository
 import io.bumbumapps.radio.internetradioplayer.domain.model.Media
 import io.bumbumapps.radio.internetradioplayer.domain.model.SearchState
+import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
 import io.bumbumapps.radio.internetradioplayer.utils.MessageResException
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -46,14 +48,15 @@ class SearchInteractor
         }
     }
 
-    fun selectMedia(media: Media): Completable {
+    fun selectMedia(media: Media,context: Context): Completable {
         return when (media) {
-            is Station -> selectStation(media)
+            is Station -> selectStation(media,context)
             else -> Completable.complete()
         }
     }
 
-    private fun selectStation(station: Station): Completable {
+    private fun selectStation(station: Station,context: Context): Completable {
+        AdsLoader.showAds(context){}
         return searchRepository.searchStation(station)
                 .flatMapObservable { response ->
                     val newStation = response.toStation()

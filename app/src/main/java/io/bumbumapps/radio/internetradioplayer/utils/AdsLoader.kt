@@ -9,8 +9,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import io.bumbumapps.radio.internetradioplayer.utils.Globals.TIMER_FINISHED
 
 object AdsLoader {
-    private var mInterstitialAd: InterstitialAd? = null
-    private var TAG = "TAG"
+     var mInterstitialAd: InterstitialAd? = null
+     var TAG = "TAG"
     fun displayInterstitial(context: Context) {
          mInterstitialAd=null
         var adRequest = AdRequest.Builder().build()
@@ -28,7 +28,7 @@ object AdsLoader {
         })
 
     }
-    fun showAds(context: Context, unit: Unit?) {
+    inline fun showAds(context: Context, crossinline unit:()-> Unit) {
         if (TIMER_FINISHED){
             if (mInterstitialAd != null) {
                 mInterstitialAd?.show(context as Activity)
@@ -38,8 +38,7 @@ object AdsLoader {
                         TIMER_FINISHED=false
                         Timers.timer().start()
                         displayInterstitial(context)
-                        if (unit!=null)
-                            return unit
+                        unit()
                     }
                     override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
                         Log.d(TAG, "Ad failed to show.")
@@ -51,13 +50,11 @@ object AdsLoader {
                 }
 
             } else {
-                if (unit!=null)
-                return unit
+              unit()
             }
         }else
         {
-            if (unit!=null)
-                return unit
+           unit()
         }
 
     }

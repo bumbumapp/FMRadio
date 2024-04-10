@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -60,9 +61,7 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
         if (savedInstanceState != null || (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
             intent = null // stop redeliver old intent
         }
-        if (!TIMER_FINISHED){
-            Timers.timer().start()
-        }
+
     }
 
     override fun setupView() {
@@ -144,11 +143,15 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
     //endregion
 
     private fun checkWritePermission(): Boolean {
-        return if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+              Manifest.permission.READ_MEDIA_IMAGES
+        }else Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+        return if (ContextCompat.checkSelfPermission(this, permissions)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    arrayOf(permissions),
                     WRITE_PERMISSION_REQUEST
             )
             false

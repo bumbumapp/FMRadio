@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin:  'com.google.gms.google-services'
+apply plugin:  'com.google.firebase.crashlytics'
 def secretsProperties = new Properties()
 ext {
     file = new File(rootDir, "secrets.properties")
@@ -21,14 +22,14 @@ ext.versionMinor = 3
 ext.versionPatch = 2
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.bumbumapps.radiofm"
         minSdkVersion 23
-        targetSdkVersion 31
-        versionCode 10
-        versionName "3.3.4"
+        targetSdkVersion 33
+        versionCode 13
+        versionName "3.3.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -125,6 +126,10 @@ dependencies {
 
     //ads
     implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    implementation platform('com.google.firebase:firebase-bom:31.2.2')
 
+    // Add the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation project(':playerbutton')
 }

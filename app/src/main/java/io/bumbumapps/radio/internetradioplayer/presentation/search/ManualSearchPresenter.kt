@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.presentation.search
 
+import android.content.Context
 import io.bumbumapps.radio.internetradioplayer.data.net.UberStationsService
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.MediaInteractor
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.SearchInteractor
@@ -54,9 +55,9 @@ class ManualSearchPresenter
         suggestionSub?.dispose()
     }
 
-    fun selectMedia(media: Media) {
+    fun selectMedia(media: Media,mContext:Context) {
         selectSub?.dispose()
-        selectSub = searchInteractor.selectMedia(media)
+        selectSub = searchInteractor.selectMedia(media,mContext)
                 .subscribeX()
     }
 

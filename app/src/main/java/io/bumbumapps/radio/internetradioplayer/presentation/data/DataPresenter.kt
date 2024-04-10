@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.presentation.data
 
+import android.content.Context
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.MediaInteractor
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.SearchInteractor
 import io.bumbumapps.radio.internetradioplayer.domain.model.Media
@@ -36,10 +37,10 @@ class DataPresenter
 
     }
 
-    fun selectMedia(media: Media) {
+    fun selectMedia(media: Media,contxt:Context) {
         selectSub?.dispose()
         selectSub = searchInteractor
-                .selectMedia(media)
+                .selectMedia(media,contxt)
                 .subscribeX()
     }
 
