@@ -22,17 +22,30 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseActivity
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.drawer.DrawerFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.player.isExpanded
 import io.bumbumapps.radio.internetradioplayer.presentation.player.isHidden
-import io.bumbumapps.radio.internetradioplayer.utils.Globals.TIMER_FINISHED
-import io.bumbumapps.radio.internetradioplayer.utils.Timers
-import kotlinx.android.synthetic.main.activity_root.*
-import kotlinx.android.synthetic.main.view_toolbar.*
+import io.bumbumapps.radio.internetradioplayer.AdsConsent
+import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
+
 import toothpick.Toothpick
 
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.drawerLayout: androidx.drawerlayout.widget.DrawerLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerLayout)
+private val androidx.fragment.app.Fragment.drawerLayout: androidx.drawerlayout.widget.DrawerLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerLayout)
+private val android.app.Dialog.drawerLayout: androidx.drawerlayout.widget.DrawerLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerLayout)
+private val android.app.Activity.loadingPb: android.widget.ProgressBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.loadingPb)
+private val androidx.fragment.app.Fragment.loadingPb: android.widget.ProgressBar get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.loadingPb)
+private val android.app.Dialog.loadingPb: android.widget.ProgressBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.loadingPb)
+private val android.app.Activity.rootContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.rootContainer)
+private val androidx.fragment.app.Fragment.rootContainer: android.widget.FrameLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.rootContainer)
+private val android.app.Dialog.rootContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.rootContainer)
+private val android.app.Activity.toolbar: androidx.appcompat.widget.Toolbar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.toolbar)
+private val androidx.fragment.app.Fragment.toolbar: androidx.appcompat.widget.Toolbar get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.toolbar)
+private val android.app.Dialog.toolbar: androidx.appcompat.widget.Toolbar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.toolbar)
 
 /**
  * Created by Vladimir Mikhalev 01.10.2017.
  */
 private const val WRITE_PERMISSION_REQUEST = 100
+private const val NOTIFICATION_PERMISSION_REQUEST = 101
 
 class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
 
@@ -47,11 +60,8 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
             installModules(RootActivityModule())
         }
         super.onCreate(savedInstanceState)
-//        MobileAds.initialize(this)
-//
-//
-//        val adRequest = AdRequest.Builder().build()
-//        adView.loadAd(adRequest)
+        AdsConsent.gather(this) { AdsLoader.displayInterstitial(this) }
+        requestNotificationPermission()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         val drawerFragment = supportFragmentManager.findFragmentById(R.id.drawerFr) as DrawerFragment
         drawerFragment.init(drawerLayout, toolbar)
@@ -142,10 +152,21 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
 
     //endregion
 
+    /** Android 13+: playback / recording notifications need the runtime permission. */
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS), NOTIFICATION_PERMISSION_REQUEST)
+        }
+    }
+
     private fun checkWritePermission(): Boolean {
+        // Local playlist files are audio files: READ_MEDIA_AUDIO on 13+, legacy storage read below.
         val permissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-              Manifest.permission.READ_MEDIA_IMAGES
-        }else Manifest.permission.WRITE_EXTERNAL_STORAGE
+              Manifest.permission.READ_MEDIA_AUDIO
+        }else Manifest.permission.READ_EXTERNAL_STORAGE
 
         return if (ContextCompat.checkSelfPermission(this, permissions)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -159,6 +180,7 @@ class RootActivity : BaseActivity<RootPresenter, RootView>(), RootView {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             WRITE_PERMISSION_REQUEST -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {

@@ -75,9 +75,9 @@ class PlayerService : MediaBrowserServiceCompat(), SessionCallback.Interface {
     }
 
     private fun initSession() {
-        val sessionIntent = Intent(this, RootActivity::class.java)
-        val sessionPendingIntent = PendingIntent.getActivity(this, 0, sessionIntent, PendingIntent.FLAG_IMMUTABLE)
-        session = MediaSessionCompat(this, javaClass.simpleName, null,sessionPendingIntent)
+        // The media button receiver must be a broadcast receiver: an Activity PendingIntent
+        // throws IllegalArgumentException on Android 14+ (crash on service start).
+        session = MediaSessionCompat(this, javaClass.simpleName)
         session.setCallback(SessionCallback(this))
         session.setSessionActivity(PlayerActions.sessionActivity(this))
         sessionToken = session.sessionToken

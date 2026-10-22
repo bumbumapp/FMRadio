@@ -34,12 +34,12 @@ class DiskCacheManager(context: Context) {
     private val cacheDir = context.cacheDir
 
     fun getCache(url: HttpUrl): File {
-        val pathNamePart = url.encodedPath().substringAfter('/')
+        val pathNamePart = url.encodedPath.substringAfter('/')
         val expirationDurationSec = EXPIRATION_MAP[pathNamePart] ?: 0
         val expirationTime = System.currentTimeMillis() + expirationDurationSec * 1000
 
-        val query = (0 until url.querySize())
-                .map { url.queryParameterValue(it) }
+        val query = (0 until url.querySize)
+                .map { url.queryParameterValue(it) ?: "" }
                 .toTypedArray()
         val urlNamePart = buildUrlNamePart(pathNamePart, *query)
 

@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.preference.PreferenceDialogFragmentCompat
-import kotlinx.android.synthetic.main.pref_seekbar.view.*
 
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.seekBar: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.seekBar)
+private val android.view.View.valueTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.valueTv)
 
 /**
  * Created by Vladimir Mikhalev 01.10.2018.

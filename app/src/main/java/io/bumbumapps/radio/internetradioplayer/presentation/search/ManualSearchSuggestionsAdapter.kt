@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.domain.model.Suggestion
 import io.bumbumapps.radio.internetradioplayer.domain.model.SuggestionList
-import kotlinx.android.synthetic.main.item_suggestion.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.iconIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.iconIv)
+private val android.view.View.suggestionTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.suggestionTv)
 
 /**
  * Created by Vladimir Mikhalev 12.11.2018.
@@ -72,7 +75,6 @@ class SearchSuggestionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 }
 
 class SuggestionVH(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener {
-
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         menu?.add(R.id.context_menu_suggestion, R.id.context_menu_action_delete, 0, R.string.menu_delete)

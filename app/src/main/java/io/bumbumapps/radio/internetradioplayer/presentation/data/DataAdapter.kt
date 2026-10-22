@@ -14,8 +14,17 @@ import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import io.bumbumapps.radio.internetradioplayer.domain.model.Media
 import io.bumbumapps.radio.internetradioplayer.extensions.color
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.*
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_station.*
+import io.bumbumapps.radio.internetradioplayer.LayoutContainer
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.subtitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.subtitleTv)
+private val androidx.fragment.app.Fragment.subtitleTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.subtitleTv)
+private val android.app.Dialog.subtitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.subtitleTv)
+private val io.bumbumapps.radio.internetradioplayer.LayoutContainer.subtitleTv: android.widget.TextView get() = containerView!!.findViewById(io.bumbumapps.radio.internetradioplayer.R.id.subtitleTv)
+private val android.app.Activity.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
+private val androidx.fragment.app.Fragment.titleTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
+private val android.app.Dialog.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
+private val io.bumbumapps.radio.internetradioplayer.LayoutContainer.titleTv: android.widget.TextView get() = containerView!!.findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
 
 /**
  * Created by Vladimir Mikhalev 15.11.2018.

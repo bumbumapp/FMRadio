@@ -4,6 +4,8 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.pm.ServiceInfo
+import androidx.core.app.ServiceCompat
 import android.os.Build
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
@@ -47,15 +49,16 @@ class MediaNotification(private val service: PlayerService,
     fun update() {
         when (session.controller.playbackState.state) {
             PlaybackStateCompat.STATE_PLAYING -> {
-                service.startForeground(NOTIFICATION_ID, createNotification())
-                isActive = true
+                isActive = startForegroundCompat(service, NOTIFICATION_ID, createNotification(),
+                        ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+                if (!isActive) notificationManager.notify(NOTIFICATION_ID, createNotification())
             }
             PlaybackStateCompat.STATE_STOPPED -> {
-                service.stopForeground(true)
+                ServiceCompat.stopForeground(service, ServiceCompat.STOP_FOREGROUND_REMOVE)
                 isActive = false
             }
             PlaybackStateCompat.STATE_PAUSED -> {
-                service.stopForeground(false)
+                ServiceCompat.stopForeground(service, ServiceCompat.STOP_FOREGROUND_DETACH)
                 if (isActive) notificationManager.notify(NOTIFICATION_ID, createNotification())
             }
             else -> notificationManager.notify(NOTIFICATION_ID, createNotification())

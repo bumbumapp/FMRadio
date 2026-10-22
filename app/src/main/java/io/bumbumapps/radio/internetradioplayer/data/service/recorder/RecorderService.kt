@@ -37,6 +37,7 @@ class RecorderService : Service() {
     }
 
     override fun onDestroy() {
+        super.onDestroy()
         Timber.d("onDestroy: ")
     }
 

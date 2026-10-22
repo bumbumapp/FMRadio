@@ -7,8 +7,13 @@ import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.domain.model.Record
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_records.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.recordsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.recordsRv)
+private val androidx.fragment.app.Fragment.recordsRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.recordsRv)
+private val android.app.Dialog.recordsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.recordsRv)
 
 /**
  * Created by Vladimir Mikhalev 13.02.2019.

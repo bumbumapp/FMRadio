@@ -18,9 +18,26 @@ import io.bumbumapps.radio.internetradioplayer.extensions.visible
 import io.bumbumapps.radio.internetradioplayer.extensions.waitForLayout
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.data.DataAdapter
-import kotlinx.android.synthetic.main.fragment_search_manual.*
+
 import toothpick.Toothpick
 import kotlin.math.min
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val androidx.fragment.app.Fragment.placeholderView: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val android.app.Dialog.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val android.app.Activity.searchView: androidx.appcompat.widget.SearchView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.searchView)
+private val androidx.fragment.app.Fragment.searchView: androidx.appcompat.widget.SearchView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.searchView)
+private val android.app.Dialog.searchView: androidx.appcompat.widget.SearchView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.searchView)
+private val android.app.Activity.stationsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
+private val androidx.fragment.app.Fragment.stationsRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
+private val android.app.Dialog.stationsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
+private val android.app.Activity.suggestionsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.suggestionsRv)
+private val androidx.fragment.app.Fragment.suggestionsRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.suggestionsRv)
+private val android.app.Dialog.suggestionsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.suggestionsRv)
+private val android.app.Activity.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
+private val androidx.fragment.app.Fragment.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
+private val android.app.Dialog.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
 
 /**
  * Created by Vladimir Mikhalev 12.11.2018.

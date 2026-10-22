@@ -8,7 +8,9 @@ import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.StationInteractor
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_add_shortcut.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.checkbox: android.widget.CheckBox get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.checkbox)
 
 /**
  * Created by Vladimir Mikhalev 18.09.2018.

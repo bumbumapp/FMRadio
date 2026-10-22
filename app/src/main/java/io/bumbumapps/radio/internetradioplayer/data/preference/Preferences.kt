@@ -68,7 +68,7 @@ class Preferences
 
             val listener: SharedPreferences.OnSharedPreferenceChangeListener =
                     SharedPreferences.OnSharedPreferenceChangeListener { _, k ->
-                        if (k == key && !emitter.isDisposed) emitter.onNext(value?.invoke() as T)
+                        if (k == key && !emitter.isDisposed) (value?.invoke() as? T)?.let { emitter.onNext(it) }
                     }
             listeners.add(listener)
             sharedPreferences.registerOnSharedPreferenceChangeListener(listener)

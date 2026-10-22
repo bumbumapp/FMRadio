@@ -16,7 +16,11 @@ import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.PA
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.PAYLOAD_SELECTED_CHANGE
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.defaultOutline
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.fixedOutline
-import kotlinx.android.synthetic.main.item_record.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.createdAtTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.createdAtTv)
+private val android.view.View.durationTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.durationTv)
+private val android.view.View.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
 
 /**
  * Created by Vladimir Mikhalev 15.02.2019.
@@ -83,7 +87,6 @@ class RecordsAdapter : RecyclerView.Adapter<RecordVH>() {
         return newPos
     }
 }
-
 
 class RecordVH(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener {
 

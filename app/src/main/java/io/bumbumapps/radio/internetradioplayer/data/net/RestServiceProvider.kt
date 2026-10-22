@@ -2,7 +2,7 @@ package io.bumbumapps.radio.internetradioplayer.data.net
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.bumbumapps.radio.internetradioplayer.data.utils.DiskCacheManager
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient

@@ -20,8 +20,19 @@ import io.bumbumapps.radio.internetradioplayer.extensions.color
 import io.bumbumapps.radio.internetradioplayer.extensions.setTextOrHide
 import io.bumbumapps.radio.internetradioplayer.extensions.visible
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseCustomView
-import kotlinx.android.synthetic.main.view_media_info.view.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.addShortcutBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.addShortcutBt)
+private val android.view.View.dateTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dateTv)
+private val android.view.View.equalizerBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.equalizerBt)
+private val android.view.View.genreTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.genreTv)
+private val android.view.View.groupTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.groupTv)
+private val android.view.View.locationTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.locationTv)
+private val android.view.View.recordBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.recordBt)
+private val android.view.View.specsTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.specsTv)
+private val android.view.View.websiteTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.websiteTv)
 
 /**
  * Created by Vladimir Mikhalev 27.03.2019.
@@ -30,7 +41,6 @@ import toothpick.Toothpick
 class MediaInfoViewImpl @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : BaseCustomView<MediaInfoPresenter, MediaInfoView>(context, attrs, defStyleAttr), MediaInfoView {
-
 
     override val layout = R.layout.view_media_info
 

@@ -2,6 +2,8 @@ package io.bumbumapps.radio.internetradioplayer.data.service.recorder
 
 import android.app.*
 import android.content.Intent
+import android.content.pm.ServiceInfo
+import io.bumbumapps.radio.internetradioplayer.data.service.startForegroundCompat
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
@@ -27,7 +29,7 @@ class RecorderNotificationFactory(private val service: Service) {
     fun createAndStart(id: Int, uri: Uri, name: String, isForeground: Boolean): RecorderNotification {
         val notification = createNotification(uri, name)
         if (isForeground) {
-            service.startForeground(id, notification)
+            startForegroundCompat(service, id, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
         } else {
             notificationManager.notify(id, notification)
         }
@@ -35,7 +37,8 @@ class RecorderNotificationFactory(private val service: Service) {
     }
 
     fun startForeground(notification: RecorderNotification) {
-        service.startForeground(notification.id, notification.notification)
+        startForegroundCompat(service, notification.id, notification.notification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
     }
 
     fun cancel(notification: RecorderNotification) {

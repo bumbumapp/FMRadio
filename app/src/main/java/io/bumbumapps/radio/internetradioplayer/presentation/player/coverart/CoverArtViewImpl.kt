@@ -15,10 +15,13 @@ import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.extensions.dp
 import io.bumbumapps.radio.internetradioplayer.extensions.themeAttrData
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseCustomView
-import kotlinx.android.synthetic.main.view_cover_art.view.*
+
 import mkaflowski.mediastylepalette.MediaNotificationProcessor
 import toothpick.Toothpick
 
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.coverArtContainer: androidx.constraintlayout.widget.ConstraintLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.coverArtContainer)
+private val android.view.View.coverArtIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.coverArtIv)
 
 /**
  * Created by Vladimir Mikhalev 28.03.2019.
@@ -53,12 +56,12 @@ class CoverArtViewImpl @JvmOverloads constructor(
     }
 
     private val requestListener = object : RequestListener<Bitmap> {
-        override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
+        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Bitmap>, isFirstResource: Boolean): Boolean {
             coverArtContainer.setBackgroundColor(context.themeAttrData(R.attr.colorPrimaryDark))
             return false
         }
 
-        override fun onResourceReady(resource: Bitmap, model: Any, target: Target<Bitmap>, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+        override fun onResourceReady(resource: Bitmap, model: Any, target: Target<Bitmap>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
             generatePalette(resource)
             return false
         }

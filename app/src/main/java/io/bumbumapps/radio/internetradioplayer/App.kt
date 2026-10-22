@@ -23,7 +23,10 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+        if (com.google.firebase.FirebaseApp.getApps(this).isNotEmpty()) {
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+        }
+        EdgeToEdgeInsets.install(this)
         if (BuildConfig.DEBUG) {
             Toothpick.setConfiguration(Configuration.forDevelopment().preventMultipleRootScopes())
         } else {

@@ -6,7 +6,7 @@ import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.internal.http.RealResponseBody
 import okhttp3.internal.io.FileSystem
-import okio.Okio
+import okio.buffer
 import timber.log.Timber
 import java.io.FileWriter
 import java.io.IOException
@@ -20,14 +20,14 @@ class DiskCacheInterceptor(private val cacheManager: DiskCacheManager) : Interce
     override fun intercept(chain: Interceptor.Chain): Response {
         cacheManager.cleanExpiredCache()
 
-        val cacheFile = cacheManager.getCache(chain.request().url())
+        val cacheFile = cacheManager.getCache(chain.request().url)
 
         if (!cacheFile.exists() || cacheFile.length() == 0L) {
             val response = chain.proceed(chain.request())
             if (response.isSuccessful) {
                 try {
                     Timber.d("Write ${cacheFile.name}")
-                    FileWriter(cacheFile).use { it.write(response.body()!!.string()) }
+                    FileWriter(cacheFile).use { it.write(response.body!!.string()) }
                 } catch (e: IOException) {
                     Timber.e(e)
                     return response
@@ -39,7 +39,7 @@ class DiskCacheInterceptor(private val cacheManager: DiskCacheManager) : Interce
             Timber.d("Return ${cacheFile.name}")
         }
 
-        val cacheSource = Okio.buffer(FileSystem.SYSTEM.source(cacheFile))
+        val cacheSource = FileSystem.SYSTEM.source(cacheFile).buffer()
 
         return Response.Builder()
                 .request(chain.request())

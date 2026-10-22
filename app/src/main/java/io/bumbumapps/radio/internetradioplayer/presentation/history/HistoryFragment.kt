@@ -8,8 +8,16 @@ import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.extensions.visible
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_history.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.historyRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.historyRv)
+private val androidx.fragment.app.Fragment.historyRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.historyRv)
+private val android.app.Dialog.historyRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.historyRv)
+private val android.app.Activity.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val androidx.fragment.app.Fragment.placeholderView: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val android.app.Dialog.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
 
 /**
  * Created by Vladimir Mikhalev 02.12.2018.

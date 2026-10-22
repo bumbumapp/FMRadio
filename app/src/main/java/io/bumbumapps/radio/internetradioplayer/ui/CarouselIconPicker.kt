@@ -14,7 +14,9 @@ import io.bumbumapps.radio.internetradioplayer.domain.model.ICONS
 import io.bumbumapps.radio.internetradioplayer.domain.model.Icon
 import io.bumbumapps.radio.internetradioplayer.extensions.color
 import io.bumbumapps.radio.internetradioplayer.extensions.setTintExt
-import kotlinx.android.synthetic.main.view_icon.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.iconIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.iconIv)
 
 /**
  * Created by Vladimir Mikhalev 05.09.2018.

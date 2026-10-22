@@ -51,7 +51,7 @@ class RecordersPool(private val service: Service) {
         }
         notifications.remove(uri)
         available += 1
-        if (available == MAX_RECORDERS) service.stopForeground(true)
+        if (available == MAX_RECORDERS) androidx.core.app.ServiceCompat.stopForeground(service, androidx.core.app.ServiceCompat.STOP_FOREGROUND_REMOVE)
     }
 
     private fun createRecorder(uri: Uri): Recorder {

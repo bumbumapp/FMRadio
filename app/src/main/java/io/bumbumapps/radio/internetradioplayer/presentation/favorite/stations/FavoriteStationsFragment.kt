@@ -18,8 +18,19 @@ import io.bumbumapps.radio.internetradioplayer.domain.model.FlatStationsList
 import io.bumbumapps.radio.internetradioplayer.extensions.visible
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.main.NewStationDialog
-import kotlinx.android.synthetic.main.fragment_favorite_stations.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.addStationFab: com.google.android.material.floatingactionbutton.FloatingActionButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.addStationFab)
+private val androidx.fragment.app.Fragment.addStationFab: com.google.android.material.floatingactionbutton.FloatingActionButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.addStationFab)
+private val android.app.Dialog.addStationFab: com.google.android.material.floatingactionbutton.FloatingActionButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.addStationFab)
+private val android.app.Activity.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val androidx.fragment.app.Fragment.placeholderView: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val android.app.Dialog.placeholderView: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.placeholderView)
+private val android.app.Activity.stationsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
+private val androidx.fragment.app.Fragment.stationsRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
+private val android.app.Dialog.stationsRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stationsRv)
 
 /**
  * Created by Vladimir Mikhalev 13.02.2019.

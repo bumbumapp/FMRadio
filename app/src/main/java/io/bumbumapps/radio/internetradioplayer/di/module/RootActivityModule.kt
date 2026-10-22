@@ -2,8 +2,8 @@ package io.bumbumapps.radio.internetradioplayer.di.module
 
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.Router
 import io.bumbumapps.radio.internetradioplayer.presentation.root.RootPresenter
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.NavigatorHolder
+import io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.Cicerone
+import io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.NavigatorHolder
 import toothpick.config.Module
 
 /**

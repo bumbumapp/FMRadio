@@ -16,8 +16,15 @@ import io.bumbumapps.radio.internetradioplayer.domain.model.FlatStationsList
 import io.bumbumapps.radio.internetradioplayer.extensions.color
 import io.bumbumapps.radio.internetradioplayer.extensions.dp
 import io.bumbumapps.radio.internetradioplayer.extensions.visible
-import kotlinx.android.synthetic.main.item_group_item.view.*
-import kotlinx.android.synthetic.main.item_group_title.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.handleIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.handleIv)
+private val android.view.View.iconExpandedIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.iconExpandedIv)
+private val android.view.View.nameTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.nameTv)
+private val android.view.View.selectionView: android.view.View get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.selectionView)
+private val android.view.View.specsTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.specsTv)
+private val android.view.View.titleHandleIv: android.widget.ImageView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleHandleIv)
+private val android.view.View.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
 
 /**
  * Created by Vladimir Mikhalev 18.06.2019.

@@ -8,7 +8,14 @@ import android.widget.FrameLayout
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
 import io.bumbumapps.radio.internetradioplayer.R
-import kotlinx.android.synthetic.main.view_color_picker.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.blueBar: io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.blueBar)
+private val android.view.View.blueValue: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.blueValue)
+private val android.view.View.greenBar: io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.greenBar)
+private val android.view.View.greenValue: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.greenValue)
+private val android.view.View.redBar: io.bumbumapps.radio.internetradioplayer.ui.ColorSeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.redBar)
+private val android.view.View.redValue: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.redValue)
 
 /**
  * Created by Vladimir Mikhalev 16.12.2017.

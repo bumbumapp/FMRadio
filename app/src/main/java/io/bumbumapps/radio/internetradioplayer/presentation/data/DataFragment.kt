@@ -11,8 +11,16 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.DataScreen
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.ScreenContext
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.SearchNavigationTree
-import kotlinx.android.synthetic.main.fragment_data.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.dataRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataRv)
+private val androidx.fragment.app.Fragment.dataRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataRv)
+private val android.app.Dialog.dataRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataRv)
+private val android.app.Activity.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
+private val androidx.fragment.app.Fragment.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
+private val android.app.Dialog.swipeToRefresh: androidx.swiperefreshlayout.widget.SwipeRefreshLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.swipeToRefresh)
 
 /**
  * Created by Vladimir Mikhalev 21.03.2019.

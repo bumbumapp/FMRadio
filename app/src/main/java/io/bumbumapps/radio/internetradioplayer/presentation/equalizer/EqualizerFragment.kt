@@ -15,8 +15,28 @@ import io.bumbumapps.radio.internetradioplayer.extensions.*
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.ui.EqualizerContainer
 import io.bumbumapps.radio.internetradioplayer.utils.SimpleOnSeekBarChangeListener
-import kotlinx.android.synthetic.main.view_equalizer.*
+
 import toothpick.Toothpick
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.bassSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.bassSb)
+private val androidx.fragment.app.Fragment.bassSb: android.widget.SeekBar get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.bassSb)
+private val android.app.Dialog.bassSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.bassSb)
+private val android.app.Activity.equalizerView: io.bumbumapps.radio.internetradioplayer.ui.EqualizerContainer get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.equalizerView)
+private val androidx.fragment.app.Fragment.equalizerView: io.bumbumapps.radio.internetradioplayer.ui.EqualizerContainer get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.equalizerView)
+private val android.app.Dialog.equalizerView: io.bumbumapps.radio.internetradioplayer.ui.EqualizerContainer get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.equalizerView)
+private val android.app.Activity.presetSpinner: android.widget.Spinner get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.presetSpinner)
+private val androidx.fragment.app.Fragment.presetSpinner: android.widget.Spinner get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.presetSpinner)
+private val android.app.Dialog.presetSpinner: android.widget.Spinner get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.presetSpinner)
+private val android.app.Activity.resetBt: com.google.android.material.button.MaterialButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.resetBt)
+private val androidx.fragment.app.Fragment.resetBt: com.google.android.material.button.MaterialButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.resetBt)
+private val android.app.Dialog.resetBt: com.google.android.material.button.MaterialButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.resetBt)
+private val android.app.Activity.switchBindBt: com.google.android.material.floatingactionbutton.FloatingActionButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.switchBindBt)
+private val androidx.fragment.app.Fragment.switchBindBt: com.google.android.material.floatingactionbutton.FloatingActionButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.switchBindBt)
+private val android.app.Dialog.switchBindBt: com.google.android.material.floatingactionbutton.FloatingActionButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.switchBindBt)
+private val android.app.Activity.virtualSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.virtualSb)
+private val androidx.fragment.app.Fragment.virtualSb: android.widget.SeekBar get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.virtualSb)
+private val android.app.Dialog.virtualSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.virtualSb)
 
 /**
  * Created by Vladimir Mikhalev 09.01.2019.

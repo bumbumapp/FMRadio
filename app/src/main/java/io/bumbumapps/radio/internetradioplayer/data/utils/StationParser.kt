@@ -6,6 +6,7 @@ import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import io.bumbumapps.radio.internetradioplayer.extensions.toURL
 import io.bumbumapps.radio.internetradioplayer.utils.MessageException
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import timber.log.Timber
 import java.net.MalformedURLException
 import java.net.URL
@@ -40,18 +41,18 @@ private val supportedAudioTypes = arrayOf("mpeg", "ogg", "opus", "aac", "aacp")
 private val suppotedPlaylists = arrayOf("x-scpls", "mpegurl", "x-mpegurl", "x-mpegURL",
         "vnd.apple.mpegurl", "vnd.apple.mpegurl.audio", "x-pn-realaudio")
 
-private fun MediaType.isAudioStream() = supportedAudioTypes.contains(subtype())
+private fun MediaType.isAudioStream() = supportedAudioTypes.contains(subtype)
 
 private val MediaType.encoding: String
-    get() = when (subtype()) {
+    get() = when (subtype) {
         "ogg", "opus" -> "OGG"
         "aac", "aacp" -> "AAC"
         else -> "MP3"
     }
 
-private fun MediaType.isPlaylistFile() = suppotedPlaylists.contains(subtype())
+private fun MediaType.isPlaylistFile() = suppotedPlaylists.contains(subtype)
 
-private fun MediaType.isPlsFile() = subtype() == "x-scpls"
+private fun MediaType.isPlsFile() = subtype == "x-scpls"
 
 class StationParser
 @Inject constructor(private val context: Context,
@@ -86,7 +87,7 @@ class StationParser
             stream!!.bufferedReader().use { it.readText() }
         }
         return if (type == PLS_TYPE
-                || type == null && name.substringAfterLast('.').toLowerCase() == EXT_PLS) {
+                || type == null && name.substringAfterLast('.').lowercase() == EXT_PLS) {
             content.parsePls()
         } else content.parseM3u()
     }
@@ -96,11 +97,11 @@ class StationParser
 
         val request = Request.Builder().url(url).build()
         val response = client.newCall(request).execute()
-        val code = response.code()
+        val code = response.code
         Timber.d("parseFromNet: $response")
 
         if (code !in IntRange(200, 299)) throw java.lang.Exception("")
-        val body = response.body() ?: throw MessageException("Error: Empty body")
+        val body = response.body ?: throw MessageException("Error: Empty body")
         val type = body.contentType() ?: throw MessageException("Error: Empty content type")
 
         Timber.d("parseFromNet: $type")
@@ -109,9 +110,9 @@ class StationParser
             else body.string().parseM3u()
 
         } else if (type.isAudioStream()) {
-            val finalUrl = response.request().url()
-            val originUrl = HttpUrl.get(url) ?: finalUrl
-            createStation(name, originUrl, finalUrl, response.headers(), type.encoding)
+            val finalUrl = response.request.url
+            val originUrl = url.toHttpUrlOrNull() ?: finalUrl
+            createStation(name, originUrl, finalUrl, response.headers, type.encoding)
 
         } else {
             throw MessageException("Error: Unsupported content type $type")
@@ -127,7 +128,7 @@ class StationParser
             encoding: String
     ): Station {
         Timber.d("createStation: $headers")
-        val stationName = if (headers[HEADER_NAME].isNullOrBlank()) name ?: finalUrl.host()
+        val stationName = if (headers[HEADER_NAME].isNullOrBlank()) name ?: finalUrl.host
         else headers[HEADER_NAME]!!
         return Station(
                 name = stationName,

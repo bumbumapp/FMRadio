@@ -9,9 +9,16 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.records.RecordsFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.FavoriteStationsFragment
 import io.bumbumapps.radio.internetradioplayer.utils.SimpleOnTabSelectedListener
-import kotlinx.android.synthetic.main.fragment_favorite.*
+
 import toothpick.Toothpick
 
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.dataContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val androidx.fragment.app.Fragment.dataContainer: android.widget.FrameLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val android.app.Dialog.dataContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val android.app.Activity.navigationTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.navigationTl)
+private val androidx.fragment.app.Fragment.navigationTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.navigationTl)
+private val android.app.Dialog.navigationTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.navigationTl)
 
 /**
  * Created by Vladimir Mikhalev 30.09.2017.

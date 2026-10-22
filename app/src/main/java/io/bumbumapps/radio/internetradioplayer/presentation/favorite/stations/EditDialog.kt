@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_edit.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.editTextView: android.widget.EditText get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.editTextView)
 
 /**
  * Created by Vladimir Mikhalev 31.12.2017.

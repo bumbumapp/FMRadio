@@ -1,6 +1,5 @@
 package io.bumbumapps.radio.internetradioplayer.presentation.player
 
-
 import android.view.View
 import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +16,66 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.root.RootView
 import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
 import io.bumbumapps.radio.internetradioplayer.utils.SimpleOnSeekBarChangeListener
-import kotlinx.android.synthetic.main.fragment_player.*
-import kotlinx.android.synthetic.main.view_controls.*
-import kotlinx.android.synthetic.main.view_media_title.*
+
 import toothpick.Toothpick
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.controlsView: androidx.constraintlayout.widget.ConstraintLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.controlsView)
+private val androidx.fragment.app.Fragment.controlsView: androidx.constraintlayout.widget.ConstraintLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.controlsView)
+private val android.app.Dialog.controlsView: androidx.constraintlayout.widget.ConstraintLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.controlsView)
+private val android.app.Activity.durationTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.durationTv)
+private val androidx.fragment.app.Fragment.durationTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.durationTv)
+private val android.app.Dialog.durationTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.durationTv)
+private val android.app.Activity.favoriteIv: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.favoriteIv)
+private val androidx.fragment.app.Fragment.favoriteIv: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.favoriteIv)
+private val android.app.Dialog.favoriteIv: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.favoriteIv)
+private val android.app.Activity.mediaInfoVp: androidx.viewpager.widget.ViewPager get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mediaInfoVp)
+private val androidx.fragment.app.Fragment.mediaInfoVp: androidx.viewpager.widget.ViewPager get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mediaInfoVp)
+private val android.app.Dialog.mediaInfoVp: androidx.viewpager.widget.ViewPager get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mediaInfoVp)
+private val android.app.Activity.metadataTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.metadataTv)
+private val androidx.fragment.app.Fragment.metadataTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.metadataTv)
+private val android.app.Dialog.metadataTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.metadataTv)
+private val android.app.Activity.nextBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.nextBt)
+private val androidx.fragment.app.Fragment.nextBt: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.nextBt)
+private val android.app.Dialog.nextBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.nextBt)
+private val android.app.Activity.pagerIndicator: com.google.android.material.tabs.TabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pagerIndicator)
+private val androidx.fragment.app.Fragment.pagerIndicator: com.google.android.material.tabs.TabLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pagerIndicator)
+private val android.app.Dialog.pagerIndicator: com.google.android.material.tabs.TabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pagerIndicator)
+private val android.app.Activity.playPauseBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBt)
+private val androidx.fragment.app.Fragment.playPauseBt: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBt)
+private val android.app.Dialog.playPauseBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBt)
+private val android.app.Activity.playPauseBtEnd: android.widget.Space get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtEnd)
+private val androidx.fragment.app.Fragment.playPauseBtEnd: android.widget.Space get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtEnd)
+private val android.app.Dialog.playPauseBtEnd: android.widget.Space get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtEnd)
+private val android.app.Activity.playPauseBtStart: android.widget.Space get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtStart)
+private val androidx.fragment.app.Fragment.playPauseBtStart: android.widget.Space get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtStart)
+private val android.app.Dialog.playPauseBtStart: android.widget.Space get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.playPauseBtStart)
+private val android.app.Activity.pointerIv: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pointerIv)
+private val androidx.fragment.app.Fragment.pointerIv: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pointerIv)
+private val android.app.Dialog.pointerIv: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.pointerIv)
+private val android.app.Activity.positionTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.positionTv)
+private val androidx.fragment.app.Fragment.positionTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.positionTv)
+private val android.app.Dialog.positionTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.positionTv)
+private val android.app.Activity.previousBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.previousBt)
+private val androidx.fragment.app.Fragment.previousBt: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.previousBt)
+private val android.app.Dialog.previousBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.previousBt)
+private val android.app.Activity.progressSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.progressSb)
+private val androidx.fragment.app.Fragment.progressSb: android.widget.SeekBar get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.progressSb)
+private val android.app.Dialog.progressSb: android.widget.SeekBar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.progressSb)
+private val android.app.Activity.statusTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTv)
+private val androidx.fragment.app.Fragment.statusTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTv)
+private val android.app.Dialog.statusTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTv)
+private val android.app.Activity.statusTvStart: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTvStart)
+private val androidx.fragment.app.Fragment.statusTvStart: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTvStart)
+private val android.app.Dialog.statusTvStart: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.statusTvStart)
+private val android.app.Activity.stopBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stopBt)
+private val androidx.fragment.app.Fragment.stopBt: android.widget.ImageButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stopBt)
+private val android.app.Dialog.stopBt: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.stopBt)
+private val android.app.Activity.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
+private val androidx.fragment.app.Fragment.titleTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
+private val android.app.Dialog.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
 
 /**
  * Created by Vladimir Mikhalev 20.02.2019.
@@ -35,7 +87,6 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
     private var isSeekEnabled = false
     private var isCoverArtEnabled = false
     private val infoAdapter = InfoAdapter(lifecycle)
-
 
     override fun providePresenter(): PlayerPresenter {
         return Toothpick.openScopes(Scopes.ROOT_ACTIVITY, this)
@@ -55,7 +106,6 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
         AdsLoader.displayInterstitial(requireContext())
     }
 
-
     private fun setupButtons() {
         favoriteIv.setOnClickListener { presenter.switchFavorite() }
         previousBt.setOnClickListener { presenter.skipToPrevious() }
@@ -69,7 +119,6 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
         }
 
     }
-
 
     private fun setupSeekBar() {
         progressSb.setOnSeekBarChangeListener(object : SimpleOnSeekBarChangeListener() {
