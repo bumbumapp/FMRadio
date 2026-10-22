@@ -18,11 +18,17 @@ import io.bumbumapps.radio.internetradioplayer.presentation.base.BaseFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.Navigator
 import io.bumbumapps.radio.internetradioplayer.presentation.root.RootActivity
 import io.bumbumapps.radio.internetradioplayer.presentation.settings.SettingsActivity
-import kotlinx.android.synthetic.main.fragment_drawer.*
-import kotlinx.android.synthetic.main.view_toolbar.view.*
-import ru.terrakok.cicerone.NavigatorHolder
+
+import io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.NavigatorHolder
 import toothpick.Toothpick
 import javax.inject.Inject
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.drawerRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerRv)
+private val androidx.fragment.app.Fragment.drawerRv: androidx.recyclerview.widget.RecyclerView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerRv)
+private val android.app.Dialog.drawerRv: androidx.recyclerview.widget.RecyclerView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.drawerRv)
+private val android.view.View.directoryLogoIv: android.widget.ImageButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.directoryLogoIv)
+private val android.view.View.toolbar: androidx.appcompat.widget.Toolbar get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.toolbar)
 
 /**
  * Created by Vladimir Mikhalev 08.04.2019.

@@ -11,8 +11,8 @@ import io.bumbumapps.radio.internetradioplayer.presentation.equalizer.EqualizerF
 import io.bumbumapps.radio.internetradioplayer.presentation.main.MainFragment
 import io.bumbumapps.radio.internetradioplayer.presentation.main.MainView
 import io.bumbumapps.radio.internetradioplayer.presentation.settings.SettingsFragment
-import ru.terrakok.cicerone.android.SupportAppNavigator
-import ru.terrakok.cicerone.commands.*
+import io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.SupportAppNavigator
+import io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.*
 import java.util.*
 
 /**

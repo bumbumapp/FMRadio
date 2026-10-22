@@ -2,12 +2,12 @@ package io.bumbumapps.radio.internetradioplayer.data.service.recorder
 
 import com.google.android.exoplayer2.upstream.DataSink
 import com.google.android.exoplayer2.upstream.DataSpec
-import com.google.android.exoplayer2.util.ReusableBufferedOutputStream
 import com.google.android.exoplayer2.util.Util
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.RecordsInteractor
 import io.bumbumapps.radio.internetradioplayer.domain.model.Record
 import io.bumbumapps.radio.internetradioplayer.extensions.subscribeX
 import timber.log.Timber
+import java.io.BufferedOutputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class RecorderDataSink
     private var outputStreamBytesWritten: Long = 0
     private var record: Record? = null
 
-    private var outputStream: ReusableBufferedOutputStream? = null
+    private var outputStream: BufferedOutputStream? = null
     private lateinit var fileOutputStream: FileOutputStream
 
     private lateinit var dataSpec: DataSpec
@@ -37,7 +37,7 @@ class RecorderDataSink
         openNextOutputStream()
     }
 
-    override fun write(buffer: ByteArray?, offset: Int, length: Int) {
+    override fun write(buffer: ByteArray, offset: Int, length: Int) {
         if (outputStream == null) return
 
         var bytesWritten = 0
@@ -91,11 +91,7 @@ class RecorderDataSink
         record = interactor.createNewRecord(dataSpec.uri, dataSpec.key ?: "new_record")
         fileOutputStream = FileOutputStream(record!!.file)
 
-        if (outputStream == null) {
-            outputStream = ReusableBufferedOutputStream(fileOutputStream, DEFAULT_BUFFER_SIZE)
-        } else {
-            outputStream!!.reset(fileOutputStream)
-        }
+        outputStream = BufferedOutputStream(fileOutputStream, DEFAULT_BUFFER_SIZE)
         outputStreamBytesWritten = 0
     }
 }

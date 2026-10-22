@@ -7,7 +7,9 @@ import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.extensions.color
 import io.bumbumapps.radio.internetradioplayer.extensions.themeAttrData
 import io.bumbumapps.radio.internetradioplayer.presentation.favorite.stations.PAYLOAD_SELECTED_CHANGE
-import kotlinx.android.synthetic.main.item_drawer.view.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.view.View.titleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.titleTv)
 
 /**
  * Created by Vladimir Mikhalev 08.04.2019.

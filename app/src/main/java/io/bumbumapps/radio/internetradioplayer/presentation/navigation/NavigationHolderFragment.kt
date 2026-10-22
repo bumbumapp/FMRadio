@@ -15,7 +15,29 @@ import io.bumbumapps.radio.internetradioplayer.extensions.dp
 import io.bumbumapps.radio.internetradioplayer.extensions.visible
 import io.bumbumapps.radio.internetradioplayer.extensions.waitForLayout
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BackPressListener
-import kotlinx.android.synthetic.main.fragment_navigation_holder.*
+
+// Former kotlin-android-extensions synthetic view accessors.
+private val android.app.Activity.childrenContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenContainer)
+private val androidx.fragment.app.Fragment.childrenContainer: android.widget.FrameLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenContainer)
+private val android.app.Dialog.childrenContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenContainer)
+private val android.app.Activity.childrenScroll: android.widget.ScrollView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenScroll)
+private val androidx.fragment.app.Fragment.childrenScroll: android.widget.ScrollView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenScroll)
+private val android.app.Dialog.childrenScroll: android.widget.ScrollView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.childrenScroll)
+private val android.app.Activity.dataContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val androidx.fragment.app.Fragment.dataContainer: android.widget.FrameLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val android.app.Dialog.dataContainer: android.widget.FrameLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataContainer)
+private val android.app.Activity.dataScroll: android.widget.ScrollView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataScroll)
+private val androidx.fragment.app.Fragment.dataScroll: android.widget.ScrollView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataScroll)
+private val android.app.Dialog.dataScroll: android.widget.ScrollView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.dataScroll)
+private val android.app.Activity.parentBt: com.google.android.material.button.MaterialButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentBt)
+private val androidx.fragment.app.Fragment.parentBt: com.google.android.material.button.MaterialButton get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentBt)
+private val android.app.Dialog.parentBt: com.google.android.material.button.MaterialButton get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentBt)
+private val android.app.Activity.parentTitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentTitleTv)
+private val androidx.fragment.app.Fragment.parentTitleTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentTitleTv)
+private val android.app.Dialog.parentTitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.parentTitleTv)
+private val android.app.Activity.screenTitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.screenTitleTv)
+private val androidx.fragment.app.Fragment.screenTitleTv: android.widget.TextView get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.screenTitleTv)
+private val android.app.Dialog.screenTitleTv: android.widget.TextView get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.screenTitleTv)
 
 /**
  * Created by Vladimir Mikhalev 21.03.2019.

@@ -8,14 +8,15 @@ import android.content.IntentFilter
 import android.media.AudioManager.ACTION_AUDIO_BECOMING_NOISY
 import android.net.Uri
 import android.net.wifi.WifiManager
+import androidx.core.content.ContextCompat
 import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.analytics.AnalyticsListener
 import com.google.android.exoplayer2.audio.AudioAttributes
+import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSource
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
-import com.google.android.exoplayer2.source.ExtractorMediaSource
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.FileDataSource
 import com.google.android.exoplayer2.util.Util
 import io.bumbumapps.radio.internetradioplayer.BuildConfig
@@ -40,7 +41,7 @@ class Playback(private val service: PlayerService,
                private val preferences: Preferences) {
 
     private var playAgainOnHeadset = false
-    private var player: SimpleExoPlayer? = null
+    private var player: ExoPlayer? = null
 
     private val httpClient = Scopes.app.getInstance(OkHttpClient::class.java)
     private val loadControl = Scopes.app.getInstance(LoadControl::class.java)
@@ -50,7 +51,7 @@ class Playback(private val service: PlayerService,
 
     private val analyticsListener = object : AnalyticsListener {
 
-        override fun onAudioSessionId(eventTime: AnalyticsListener.EventTime?, audioSessionId: Int) {
+        override fun onAudioSessionIdChanged(eventTime: AnalyticsListener.EventTime, audioSessionId: Int) {
             playerCallback.setStartAudioSessionId(audioSessionId)
         }
     }
@@ -112,8 +113,9 @@ class Playback(private val service: PlayerService,
 
 
     private fun createPlayer() {
-        player = ExoPlayerFactory.newSimpleInstance(service, AudioRenderersFactory(service),
-                DefaultTrackSelector(), loadControl)
+        player = ExoPlayer.Builder(service, AudioRenderersFactory(service))
+                .setLoadControl(loadControl)
+                .build()
         player?.addListener(playerCallback)
         playerCallback.player = player
         player?.addAnalyticsListener(analyticsListener)
@@ -124,28 +126,30 @@ class Playback(private val service: PlayerService,
      player ?: return
        val builder = AudioAttributes.Builder().setUsage(C.USAGE_MEDIA)
         when (preference) {
-           AudioFocusPreference.Duck -> builder.setContentType(C.CONTENT_TYPE_MUSIC)
-          AudioFocusPreference.Pause -> builder.setContentType(C.CONTENT_TYPE_SPEECH)
+           AudioFocusPreference.Duck -> builder.setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+          AudioFocusPreference.Pause -> builder.setContentType(C.AUDIO_CONTENT_TYPE_SPEECH)
         }
         player?.setAudioAttributes(builder.build(), true)
     }
 
     private fun prepareHttpPlayer(uri: Uri) {
         val userAgent = Util.getUserAgent(service, service.getString(R.string.app_name))
-        val mediaSource = ExtractorMediaSource.Factory {
-            IcyHttpDataSource(httpClient, userAgent, playerCallback)
-        }
+        // ProgressiveMediaSource requests and parses ICY metadata itself (see PlayerCallback.onMetadata).
+        val dataSourceFactory = OkHttpDataSource.Factory(httpClient).setUserAgent(userAgent)
+        val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
                 .setLoadErrorHandlingPolicy(ErrorHandlingPolicy())
-                .createMediaSource(uri)
-
-        player?.prepare(mediaSource)
+                .createMediaSource(MediaItem.fromUri(uri))
+        playerCallback.setMetadata("")
+        player?.setMediaSource(mediaSource)
+        player?.prepare()
     }
 
     private fun prepareFilePlayer(uri: Uri) {
-        val mediaSource = ExtractorMediaSource.Factory(::FileDataSource)
-                .setExtractorsFactory(DefaultExtractorsFactory().setConstantBitrateSeekingEnabled(true))
-                .createMediaSource(uri)
-        player?.prepare(mediaSource)
+        val mediaSource = ProgressiveMediaSource.Factory(FileDataSource.Factory(),
+                DefaultExtractorsFactory().setConstantBitrateSeekingEnabled(true))
+                .createMediaSource(MediaItem.fromUri(uri))
+        player?.setMediaSource(mediaSource)
+        player?.prepare()
     }
 
     private fun holdResources() {
@@ -186,7 +190,8 @@ class Playback(private val service: PlayerService,
 
     private fun registerAudioNoisyReceiver() {
         if (!audioNoisyReceiverRegistered) {
-            service.registerReceiver(audioNoisyReceiver, audioNoisyReceiver.filter)
+            ContextCompat.registerReceiver(service, audioNoisyReceiver, audioNoisyReceiver.filter,
+                    ContextCompat.RECEIVER_NOT_EXPORTED)
             audioNoisyReceiverRegistered = true
         }
     }

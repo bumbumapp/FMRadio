@@ -3,10 +3,11 @@ package io.bumbumapps.radio.internetradioplayer.data.service.recorder
 import android.content.Context
 import android.net.Uri
 import android.net.wifi.WifiManager
-import com.google.android.exoplayer2.ExoPlayerFactory
-import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ExtractorMediaSource
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.TeeDataSource
 import com.google.android.exoplayer2.util.Util
 import io.bumbumapps.radio.internetradioplayer.BuildConfig
@@ -14,7 +15,6 @@ import io.bumbumapps.radio.internetradioplayer.R
 import io.bumbumapps.radio.internetradioplayer.data.service.PlayerCallback
 import io.bumbumapps.radio.internetradioplayer.data.service.player.AudioRenderersFactory
 import io.bumbumapps.radio.internetradioplayer.data.service.player.ErrorHandlingPolicy
-import io.bumbumapps.radio.internetradioplayer.data.service.player.IcyHttpDataSource
 import io.bumbumapps.radio.internetradioplayer.extensions.runOnUiThread
 import io.bumbumapps.radio.internetradioplayer.extensions.wifiManager
 import okhttp3.OkHttpClient
@@ -30,7 +30,7 @@ class Recorder
                     private val recorderDataSink: RecorderDataSink) {
 
     var playerCallback: PlayerCallback? = null
-    private var player: SimpleExoPlayer? = null
+    private var player: ExoPlayer? = null
 
     private val wifiLock = context.wifiManager
             .createWifiLock(WifiManager.WIFI_MODE_FULL, BuildConfig.APPLICATION_ID)
@@ -53,27 +53,28 @@ class Recorder
     }
 
     private fun createPlayer() {
-        player = ExoPlayerFactory.newSimpleInstance(context, AudioRenderersFactory(context),
-                DefaultTrackSelector(), RecorderLoadControl())
-        player?.addListener(playerCallback)
+        player = ExoPlayer.Builder(context, AudioRenderersFactory(context))
+                .setLoadControl(RecorderLoadControl())
+                .build()
+        playerCallback?.let { player?.addListener(it) }
     }
 
     private fun releasePlayer() {
-        player?.removeListener(playerCallback)
+        playerCallback?.let { player?.removeListener(it) }
         player?.release()
         player = null
     }
 
     private fun preparePlayer(name: String, uri: Uri) {
         val userAgent = Util.getUserAgent(context, context.getString(R.string.app_name))
-        val mediaSource = ExtractorMediaSource.Factory {
-            val icyHttpDataSource = IcyHttpDataSource(httpClient, userAgent, null)
-            TeeDataSource(icyHttpDataSource, recorderDataSink)
-        }
+        val httpFactory = OkHttpDataSource.Factory(httpClient).setUserAgent(userAgent)
+        val teeFactory = DataSource.Factory { TeeDataSource(httpFactory.createDataSource(), recorderDataSink) }
+        val mediaItem = MediaItem.Builder().setUri(uri).setCustomCacheKey(name).build()
+        val mediaSource = ProgressiveMediaSource.Factory(teeFactory)
                 .setLoadErrorHandlingPolicy(ErrorHandlingPolicy())
-                .setCustomCacheKey(name)
-                .createMediaSource(uri)
+                .createMediaSource(mediaItem)
 
-        player?.prepare(mediaSource)
+        player?.setMediaSource(mediaSource)
+        player?.prepare()
     }
 }

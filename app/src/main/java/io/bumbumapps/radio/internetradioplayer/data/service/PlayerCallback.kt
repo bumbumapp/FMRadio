@@ -4,9 +4,11 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.PlaybackException
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.metadata.Metadata
+import com.google.android.exoplayer2.metadata.icy.IcyInfo
 import io.bumbumapps.radio.internetradioplayer.data.service.extensions.*
 import io.bumbumapps.radio.internetradioplayer.domain.model.Media
 import io.bumbumapps.radio.internetradioplayer.extensions.runOnUiThread
@@ -17,13 +19,13 @@ import kotlin.math.max
 const val EVENT_SESSION_START = "EVENT_SESSION_START"
 const val EVENT_SESSION_END = "EVENT_SESSION_END"
 
-abstract class PlayerCallback : Player.EventListener {
+abstract class PlayerCallback : Player.Listener {
 
     private var sessionId = 0
     private var playbackStateCompat = DEFAULT_PLAYBACK_STATE
     private var mediaMetadata = EMPTY_METADATA
     private var metadataPostTask: TimerTask? = null
-    var player: SimpleExoPlayer? = null
+    var player: ExoPlayer? = null
 
     fun initDefault() {
         onPlaybackStateChanged(playbackStateCompat)
@@ -65,28 +67,20 @@ abstract class PlayerCallback : Player.EventListener {
         onPlaybackStateChanged(playbackStateCompat)
     }
 
-    //region =============== Player.EventListener ==============
+    //region =============== Player.Listener ==============
 
-    override fun onPlaybackParametersChanged(playbackParameters: PlaybackParameters) {
+    override fun onPlayerError(error: PlaybackException) {
+        onPlayerError(error as Exception)
     }
 
-    override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {
-
-    }
-
-    @SuppressLint("SwitchIntDef")
-    override fun onPlayerError(error: ExoPlaybackException) {
-        val exception = when (error.type) {
-            ExoPlaybackException.TYPE_RENDERER -> {
-            }
-            ExoPlaybackException.TYPE_SOURCE -> {
-
-            }
-            else -> {
-
+    /** ICY stream titles ("Artist - Title") arrive as IcyInfo metadata entries. */
+    override fun onMetadata(metadata: Metadata) {
+        for (i in 0 until metadata.length()) {
+            val entry = metadata.get(i)
+            if (entry is IcyInfo) {
+                setMetadata(entry.title ?: "")
             }
         }
-
     }
 
     override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
@@ -102,7 +96,7 @@ abstract class PlayerCallback : Player.EventListener {
             mediaMetadata = mediaMetadata.setDuration(player?.duration ?: 0)
             playbackStateCompat = playbackStateCompat.setPosition(player?.currentPosition ?: 0)
             if (playWhenReady && player?.volume == 0f) fadeInVolume(player)
-          val actionsChanger = if (player?.isCurrentWindowSeekable == true) PlayerActions::enableSeek
+          val actionsChanger = if (player?.isCurrentMediaItemSeekable == true) PlayerActions::enableSeek
           else PlayerActions::disableSeek
           playbackStateCompat = playbackStateCompat.changeActions(actionsChanger)
         }
@@ -118,26 +112,14 @@ abstract class PlayerCallback : Player.EventListener {
         onMediaMetadataChanged(mediaMetadata)
     }
 
-    override fun onSeekProcessed() {
-        player?.let {
-            playbackStateCompat = playbackStateCompat.setPosition(it.currentPosition)
-            onPlaybackStateChanged(playbackStateCompat)
+    override fun onPositionDiscontinuity(oldPosition: Player.PositionInfo, newPosition: Player.PositionInfo,
+                                         reason: Int) {
+        if (reason == Player.DISCONTINUITY_REASON_SEEK) {
+            player?.let {
+                playbackStateCompat = playbackStateCompat.setPosition(it.currentPosition)
+                onPlaybackStateChanged(playbackStateCompat)
+            }
         }
-    }
-
-    override fun onTimelineChanged(timeline: Timeline, manifest: Any?, reason: Int) {
-    }
-
-    override fun onLoadingChanged(isLoading: Boolean) {
-    }
-
-    override fun onPositionDiscontinuity(reason: Int) {
-    }
-
-    override fun onRepeatModeChanged(repeatMode: Int) {
-    }
-
-    override fun onShuffleModeEnabledChanged(shuffleModeEnabled: Boolean) {
     }
 
     //endregion
@@ -164,9 +146,10 @@ abstract class PlayerCallback : Player.EventListener {
 
     private val volumeAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(3000)
 
-    private fun fadeInVolume(player: SimpleExoPlayer?) {
+    private fun fadeInVolume(player: ExoPlayer?) {
         if (player == null) return
         volumeAnimator.cancel()
+        volumeAnimator.removeAllUpdateListeners()
         volumeAnimator.addUpdateListener { player.volume = it.animatedValue as Float }
         volumeAnimator.start()
     }

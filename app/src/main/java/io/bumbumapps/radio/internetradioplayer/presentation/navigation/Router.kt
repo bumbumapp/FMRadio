@@ -7,7 +7,7 @@ import io.bumbumapps.radio.internetradioplayer.R
  * Created by Vladimir Mikhalev 04.12.2017.
  */
 
-class Router : ru.terrakok.cicerone.Router() {
+class Router : io.bumbumapps.radio.internetradioplayer.presentation.navigation.cicerone.Router() {
 
     companion object {
         const val MAIN_SCREEN = "MAIN_SCREEN"
