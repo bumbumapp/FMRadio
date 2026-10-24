@@ -13,6 +13,7 @@ import io.bumbumapps.radio.internetradioplayer.data.utils.BackupRestoreHelper
 import io.bumbumapps.radio.internetradioplayer.di.Scopes
 import io.bumbumapps.radio.internetradioplayer.domain.interactor.FavoriteListInteractor
 import io.bumbumapps.radio.internetradioplayer.extensions.startActivitySafe
+import io.bumbumapps.radio.internetradioplayer.extensions.tryStartActivity
 import io.bumbumapps.radio.internetradioplayer.extensions.subscribeX
 import io.bumbumapps.radio.internetradioplayer.presentation.base.BackPressListener
 import io.bumbumapps.radio.internetradioplayer.presentation.navigation.Router
@@ -111,8 +112,6 @@ class SettingsFragment : PreferenceFragmentCompat(), BackPressListener {
     private fun restoreBackup() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = BACKUP_TYPE
-        if (requireContext().packageManager.resolveActivity(intent, 0) != null) {
-            startActivityForResult(intent, PICK_BACKUP_REQUEST_CODE)
-        }
+        tryStartActivity { startActivityForResult(intent, PICK_BACKUP_REQUEST_CODE) }
     }
 }

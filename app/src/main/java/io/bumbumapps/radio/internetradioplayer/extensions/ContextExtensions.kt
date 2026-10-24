@@ -31,11 +31,18 @@ fun Context.getDisplayMetrics(): DisplayMetrics {
 }
 
 inline fun Context.startActivitySafe(intent: Intent, onError: () -> Unit = {}) {
-    if (packageManager.resolveActivity(intent, 0) != null) {
-        startActivity(intent)
-    } else {
-        onError.invoke()
-    }
+    if (!tryStartActivity { startActivity(intent) }) onError.invoke()
+}
+
+/**
+ * Runs [start] (a startActivity call); false if no app handles the intent. resolveActivity() can't be
+ * used for this check: Android 11+ package visibility hides browsers and pickers from it.
+ */
+inline fun tryStartActivity(start: () -> Unit): Boolean = try {
+    start()
+    true
+} catch (e: android.content.ActivityNotFoundException) {
+    false
 }
 
 fun Context.getScreenSize(): Pair<Int, Int> {
