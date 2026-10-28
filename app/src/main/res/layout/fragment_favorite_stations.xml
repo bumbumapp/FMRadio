@@ -40,7 +40,7 @@
         android:backgroundTint="@color/radio_accent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:useCompatPadding="true"
-        android:tint="@color/white"
+        app:tint="@color/white"
         android:contentDescription="@string/desc_add_station"
         />
 
