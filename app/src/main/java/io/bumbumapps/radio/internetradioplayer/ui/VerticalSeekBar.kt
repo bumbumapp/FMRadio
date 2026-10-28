@@ -22,6 +22,7 @@ class VerticalSeekBar @JvmOverloads constructor(
     init {
         seekBar.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(seekBar)
+        label.setTextColor(0xB3FFFFFF.toInt())
         addView(label)
     }
 
