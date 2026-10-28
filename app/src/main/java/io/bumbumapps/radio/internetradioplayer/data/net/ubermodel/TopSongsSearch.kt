@@ -2,6 +2,7 @@ package io.bumbumapps.radio.internetradioplayer.data.net.ubermodel
 
 import com.google.gson.annotations.SerializedName
 import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
+import io.bumbumapps.radio.internetradioplayer.utils.repairUtf8
 import java.util.*
 
 
@@ -25,7 +26,7 @@ class TopSongResult(
                 id = UUID.randomUUID().toString(),
                 uri = uri,
                 name = callsign,
-                description = "$artist - $title"
+                description = "${artist.repairUtf8()} - ${title.repairUtf8()}"
         )
     }
 }
