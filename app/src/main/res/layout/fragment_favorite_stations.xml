@@ -37,10 +37,10 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/radio_accent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:useCompatPadding="true"
-        android:tint="@color/dark_color"
+        android:tint="@color/white"
         android:contentDescription="@string/desc_add_station"
         />
 
