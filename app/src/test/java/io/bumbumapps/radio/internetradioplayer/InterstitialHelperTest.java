@@ -1,19 +1,31 @@
 package io.bumbumapps.radio.internetradioplayer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class InterstitialHelperTest {
+    private static final long MIN = 60_000L;
+
     @Test
-    public void frequencyCapBlocksShowsWithinSixtySeconds() {
-        assertFalse(InterstitialHelper.capAllows(100_000L, 50_000L));
-        assertTrue(InterstitialHelper.capAllows(110_000L, 50_000L));
+    public void capConstants() {
+        assertEquals(10 * MIN, InterstitialHelper.MIN_INTERVAL_MS);
+        assertEquals(3 * MIN, InterstitialHelper.FIRST_GRACE_MS);
     }
 
     @Test
-    public void firstShowIsAllowed() {
-        assertTrue(InterstitialHelper.capAllows(0L, -InterstitialHelper.MIN_INTERVAL_MS));
+    public void noAdInTheFirstThreeMinutes() {
+        long never = -InterstitialHelper.MIN_INTERVAL_MS;
+        assertFalse(InterstitialHelper.capAllows(3 * MIN - 1, never, 0L));
+        assertTrue(InterstitialHelper.capAllows(3 * MIN, never, 0L));
+    }
+
+    @Test
+    public void tenMinutesBetweenAds() {
+        long shown = 30 * MIN;
+        assertFalse(InterstitialHelper.capAllows(shown + 10 * MIN - 1, shown, 0L));
+        assertTrue(InterstitialHelper.capAllows(shown + 10 * MIN, shown, 0L));
     }
 }

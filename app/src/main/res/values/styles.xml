@@ -5,7 +5,7 @@
         <item name="colorPrimaryDark">@color/dark_color</item>
         <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorSecondary">#B3009688</item>
+        <item name="colorSecondary">@color/radio_accent</item>
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">#96FFFFFF</item>
         <item name="colorSurface">#F4E8E8</item>
@@ -14,6 +14,25 @@
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
         <item name="autoCompleteTextViewStyle">@style/SearchAutoCompleteTextView</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="fontFamily">@font/manrope</item>
+        <item name="tabStyle">@style/RadioTabs</item>
+        <item name="textAppearanceButton">@style/RadioTabText</item>
+    </style>
+
+    <!-- Sentence-case tabs with a slim accent indicator. -->
+    <style name="RadioTabs" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabTextAppearance">@style/RadioTabText</item>
+        <item name="tabIndicatorColor">@color/radio_accent</item>
+    </style>
+
+    <style name="RadioTabText" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 
     <style name="AppTheme.Splash">
@@ -30,7 +49,7 @@
     <style name="MySeekBar" parent="Widget.AppCompat.SeekBar">
         <item name="android:progressBackgroundTint">#FFFFFF</item>
         <item name="android:progressTint">@color/white</item>
-        <item name="android:thumbTint">#4D009688</item>
+        <item name="android:thumbTint">@color/radio_accent</item>
     </style>
     <style name="MySeekBarSettings" parent="Widget.AppCompat.SeekBar">
         <item name="android:progressBackgroundTint">#E1D0D0</item>

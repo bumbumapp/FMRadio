@@ -12,15 +12,15 @@
 
     <io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout
         android:id="@+id/mainTl"
-        style="@style/Widget.MaterialComponents.TabLayout.Colored"
+        style="@style/RadioTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="#33009688"
-        app:tabIndicatorHeight="6dp"
+        app:tabIndicatorColor="@color/radio_accent"
+        app:tabIndicatorHeight="3dp"
         app:tabsNumber="3"
         app:tabTextColor="#66FFFFFF"
         android:background="@color/dark_color"

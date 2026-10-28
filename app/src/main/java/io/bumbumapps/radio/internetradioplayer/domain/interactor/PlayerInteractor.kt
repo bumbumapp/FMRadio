@@ -6,7 +6,6 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import io.bumbumapps.radio.internetradioplayer.data.repository.PlayerRepository
 import io.bumbumapps.radio.internetradioplayer.data.utils.NetworkChecker
-import io.bumbumapps.radio.internetradioplayer.utils.AdsLoader
 import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -47,12 +46,8 @@ class PlayerInteractor
     fun play() = player.play()
 
     fun playPause(context: Context) {
-        if (isPlaying) {
-            player.pause()
-            AdsLoader.showAds(context){}
-        } else {
-            AdsLoader.showAds(context){player.play()}
-        }
+        // No interstitials on play/pause: listening must never be interrupted.
+        if (isPlaying) player.pause() else player.play()
     }
 
     fun stop() = player.stop()

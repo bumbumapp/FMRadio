@@ -16,13 +16,13 @@
 
     <io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout
         android:id="@+id/navigationTl"
-        style="@style/Widget.MaterialComponents.TabLayout.Colored"
+        style="@style/RadioTabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
         android:visibility="gone"
         app:tabBackground="@color/dark_color"
-        app:tabIndicatorColor="#33009688"
+        app:tabIndicatorColor="@color/radio_accent"
         app:tabIndicatorGravity="top"
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="#66FFFFFF"

@@ -50,7 +50,7 @@
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="#4D009688"
+        app:backgroundTint="@color/radio_accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:fabSize="mini"
         app:layout_constraintTop_toTopOf="parent"
