@@ -13,15 +13,17 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_color"
+        android:layout_height="76dp"
+        android:background="@color/bento_surface"
+        app:contentInsetStart="20dp"
+        app:contentInsetEnd="16dp"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/toolbarContainer"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="76dp"
             >
 
             <TextView
@@ -29,8 +31,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:textColor="@color/white"
+                android:textAppearance="@style/Bento.Text.Display"
+                android:textSize="28sp"
+                android:textColor="@color/fm_fg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,11 +41,14 @@
 
             <ImageButton
                 android:id="@+id/directoryLogoIv"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/iv_more"
-                android:layout_marginRight="10dp"
-                android:background="@color/transparent"
+                android:contentDescription="@string/bento_more"
+                android:background="@drawable/fm_square_btn"
+                android:stateListAnimator="@animator/bento_press"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 

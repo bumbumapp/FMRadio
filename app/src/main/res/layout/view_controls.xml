@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/grey_50"
+    android:background="@drawable/fm_sheet_bg"
     >
 
     <FrameLayout
@@ -28,16 +28,17 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:layout_marginBottom="10dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@color/white"
+            android:textAppearance="@style/Bento.Text.TitleMedium"
+            android:textColor="@color/fm_fg"
             tools:text="Festus vigils ducunt ad gemna. Ubi est fidelis canis?"
             />
     </FrameLayout>
 
     <ImageButton
         android:id="@+id/previousBt"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:tint="@color/fm_fg"
         android:background="@color/transparent"
         android:contentDescription="@string/desc_skip_previous_button"
         android:padding="4dp"
@@ -51,8 +52,8 @@
 
     <ImageButton
         android:id="@+id/stopBt"
-        android:layout_width="30dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:contentDescription="@string/desc_stop_button"
         android:padding="4dp"
         android:background="@color/transparent"
@@ -61,13 +62,14 @@
         app:layout_constraintEnd_toStartOf="@id/playPauseBtEnd"
         app:layout_constraintStart_toEndOf="@id/previousBt"
         app:layout_constraintTop_toTopOf="@id/playPauseBtEnd"
+        app:layout_constraintBottom_toBottomOf="@id/playPauseBtEnd"
         tools:ignore="UnusedAttribute"
         />
 
     <Space
         android:id="@+id/playPauseBtEnd"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@id/progressSb"
@@ -79,9 +81,9 @@
 
     <Space
         android:id="@+id/playPauseBtStart"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="6dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,12 +92,12 @@
 
     <ImageButton
         android:id="@+id/playPauseBt"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:background="@color/transparent"
         android:padding="4dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_play"
+        android:src="@null"
         tools:layout_constraintBottom_toTopOf="@id/progressSb"
         tools:layout_constraintEnd_toStartOf="@id/nextBt"
         tools:layout_constraintStart_toEndOf="@id/stopBt"
@@ -105,8 +107,9 @@
 
     <ImageButton
         android:id="@+id/nextBt"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:tint="@color/fm_fg"
         android:background="@color/transparent"
         android:contentDescription="@string/desc_skip_next_button"
         android:padding="4dp"
@@ -138,8 +141,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        android:textColor="@color/white"
+        android:textAppearance="@style/Bento.Text.Label"
+        android:textColor="@color/fm_fg"
         app:layout_constraintStart_toStartOf="@id/progressSb"
         app:layout_constraintTop_toTopOf="@id/progressSb"
         tools:text="00:00"
@@ -150,8 +153,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        android:textColor="@color/white"
+        android:textAppearance="@style/Bento.Text.Label"
+        android:textColor="@color/fm_fg"
         app:layout_constraintEnd_toEndOf="@id/progressSb"
         app:layout_constraintTop_toTopOf="@id/progressSb"
         tools:text="00:00"

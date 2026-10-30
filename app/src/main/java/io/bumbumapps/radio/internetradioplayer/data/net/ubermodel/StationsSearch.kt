@@ -1,5 +1,6 @@
 package io.bumbumapps.radio.internetradioplayer.data.net.ubermodel
 
+import io.bumbumapps.radio.internetradioplayer.utils.repairUtf8
 import com.google.gson.annotations.SerializedName
 import io.bumbumapps.radio.internetradioplayer.data.db.entity.Station
 import java.util.*
@@ -21,12 +22,13 @@ class StationResult(
     val uri get() = "$URI_BASE$id"
 
     fun toStation(): Station {
-        val a = artist ?: ""
-        val t = title ?: ""
+        // Uberstations sends some titles double-encoded (HÃ¤gele); repair like TopSongsSearch.
+        val a = artist?.repairUtf8() ?: ""
+        val t = title?.repairUtf8() ?: ""
         val desc = if (a.isBlank() || t.isBlank()) genre else "$a - $t"
         return Station(
                 id = UUID.randomUUID().toString(),
-                name = callsign,
+                name = callsign.repairUtf8(),
                 uri = uri,
                 description = desc
         )

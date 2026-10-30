@@ -2,21 +2,21 @@
 <resources>
     <color name="orange_500">#ff9800</color>
     <color name="red_500">#F44336</color>
-    <color name="blue_500">#1C1E24</color>
+    <color name="blue_500">#F3F4F8</color>
     <color name="green_500">#4caf50</color>
-    <color name="grey_50">#2A2D35</color>
-    <color name="grey_300">#e0e0e0</color>
+    <color name="grey_50">#FFFFFF</color>
+    <color name="grey_300">#ECEEF4</color>
     <color name="grey_400">#bdbdbd</color>
-    <color name="grey_600">#757575</color>
-    <color name="grey_900">#ffffff</color>
+    <color name="grey_600">#5B6275</color>
+    <color name="grey_900">#0E1222</color>
 
-    <color name="black">#ffffff</color>
+    <color name="black">#0E1222</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
 
     <color name="primary">@color/white</color>
     <color name="primary_dark">@color/dark_color</color>
-    <color name="primary_variant">#94A9B4</color>
+    <color name="primary_variant">#9AA1B2</color>
     <color name="secondary">#D32F2F</color>
     <color name="secondary_variant">#FFD5D0</color>
     <color name="on_primary">@color/white</color>
@@ -24,18 +24,23 @@
     <color name="surface">@color/white</color>
     <color name="on_surface">@color/grey_900</color>
     <color name="background">@color/white</color>
-    <color name="divider">@color/grey_400</color>
+    <color name="divider">#E3E6EE</color>
 
     <color name="group">#E0C983</color>
-    <color name="accent_light">#FFD5D0</color>
+    <color name="accent_light">#FFEDE2</color>
     <color name="shadow">#80616161</color>
     <color name="play">@color/radio_accent</color>
     <color name="pause">@color/radio_accent</color>
     <color name="stop">#e57373</color>
-    <color name="dark_color">#131418</color>
-    <color name="blue_color">#33FF8A3D</color>
+    <color name="dark_color">#F3F4F8</color>
+    <color name="blue_color">#FFEDE2</color>
     <!-- Brand accent: warm radio orange on graphite. -->
-    <color name="radio_accent">#FF8A3D</color>
+    <color name="radio_accent">#EE6A1F</color>
     <color name="green">#2196F3</color>
 
+    <color name="fm_fg">#0E1222</color>
+    <color name="fm_fg2">#5B6275</color>
+    <color name="fm_fg_hint">#9AA1B2</color>
+    <color name="fm_card">#FFFFFF</color>
+    <color name="fm_card_selected">#FFEDE2</color>
 </resources>

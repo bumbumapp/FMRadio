@@ -2,13 +2,13 @@
 <resources>
 
     <style name="SearchAutoCompleteTextView" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">#99FFFFFF</item>
-        <item name="colorButtonNormal">@color/white</item>
-        <item name="iconTint">@color/white</item>
+        <item name="android:textColor">@color/fm_fg</item>
+        <item name="android:textColorHint">@color/fm_fg_hint</item>
+        <item name="colorButtonNormal">@color/fm_fg</item>
+        <item name="iconTint">@color/fm_fg</item>
         <item name="searchIcon">@drawable/ic_search</item>
         <item name="closeIcon">@drawable/ic_close</item>
-        <item name="android:outlineSpotShadowColor">@color/white</item>
+        <item name="android:outlineSpotShadowColor">@color/fm_fg</item>
     </style>
 
 

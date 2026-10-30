@@ -5,12 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:background="@color/blue_500"
-    android:elevation="2dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/bg_item_middle"
     android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
     tools:ignore="UnusedAttribute">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bento_icon_square"
+        android:backgroundTint="@color/bento_tile_orange_bg"
+        android:importantForAccessibility="no"
+        android:padding="9dp"
+        android:src="@drawable/ic_fm_radio"
+        android:tint="@color/bento_tile_orange_fg" />
+
 
     <LinearLayout
         android:layout_width="0dp"
@@ -28,10 +41,10 @@
             android:ellipsize="end"
             android:paddingTop="8dp"
             android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textColor="@color/white"
+            android:paddingLeft="14dp"
+            android:textColor="@color/fm_fg"
             android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textAppearance="@style/Bento.Text.TileLabel"
             android:textStyle="bold"
             tools:text="Item name"
             />
@@ -43,16 +56,16 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:paddingRight="8dp"
-            android:paddingLeft="8dp"
-            android:textColor="@color/white"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:paddingLeft="14dp"
+            android:textColor="@color/fm_fg2"
+            android:textAppearance="@style/Bento.Text.BodySmall"
             tools:text="Item name"
             />
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="8dp"
-            android:background="@color/white"
+            android:background="@color/divider"
             >
 
         </View>

@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!-- Bento row inside a grouped white card (background set by the adapter by position). -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:elevation="2dp"
-    android:background="@color/blue_500"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_item_middle"
     android:foreground="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
-    tools:ignore="UnusedAttribute"
+    android:gravity="center_vertical"
+    android:minHeight="64dp"
+    android:orientation="horizontal"
+    android:paddingStart="12dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp"
+    tools:ignore="UnusedAttribute">
 
-    >
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bento_icon_square"
+        android:backgroundTint="@color/bento_tile_orange_bg"
+        android:importantForAccessibility="no"
+        android:padding="9dp"
+        android:src="@drawable/ic_fm_radio"
+        android:tint="@color/bento_tile_orange_fg" />
 
-    <TextView
-        android:id="@+id/titleTv"
-        style="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:ellipsize="end"
-        android:paddingTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:maxLines="1"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        tools:text="Speciess favere! A falsis, epos bassus pes."
-        />
+        android:layout_marginStart="14dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/subtitleTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:textColor="@color/white"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        tools:text="Music, Country"
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:paddingTop="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:background="#1FFFFFFF"/>
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Bento.Text.TileLabel"
+            tools:text="loewenradio" />
+
+        <TextView
+            android:id="@+id/subtitleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Bento.Text.BodySmall"
+            tools:text="Music, Country" />
+    </LinearLayout>
 </LinearLayout>

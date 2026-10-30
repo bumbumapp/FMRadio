@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_500">#0D0F16</color>
+    <color name="dark_color">#0D0F16</color>
+    <color name="grey_50">#1B1E29</color>
+    <color name="grey_900">#ffffff</color>
+    <color name="black">#ffffff</color>
+    <color name="grey_300">#20242F</color>
+    <color name="blue_color">#3A2619</color>
+    <color name="divider">#252937</color>
+    <color name="primary_variant">#94A9B4</color>
+    <color name="radio_accent">#F6AD84</color>
+    <color name="accent_light">#3A2619</color>
+    <color name="grey_600">#9AA1B2</color>
+    <color name="fm_fg">#EDEFF5</color>
+    <color name="fm_fg2">#9AA1B2</color>
+    <color name="fm_fg_hint">#6B7285</color>
+    <color name="fm_card">#1B1E29</color>
+    <color name="fm_card_selected">#3A2619</color>
+</resources>

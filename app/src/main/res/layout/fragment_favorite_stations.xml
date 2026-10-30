@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/fm_fg"
         android:text="@string/favorite_list_placeholder"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:visibility="gone"
@@ -40,7 +40,7 @@
         android:backgroundTint="@color/radio_accent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:useCompatPadding="true"
-        app:tint="@color/white"
+        app:tint="@color/fm_fg"
         android:contentDescription="@string/desc_add_station"
         />
 

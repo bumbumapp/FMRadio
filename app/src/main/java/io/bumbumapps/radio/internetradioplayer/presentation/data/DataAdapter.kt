@@ -120,13 +120,16 @@ class DataVH(itemView: View) : RecyclerView.ViewHolder(itemView), LayoutContaine
     }
 
     fun select(selected: Boolean) {
-        bgColor = itemView.context.color(if (selected) R.color.blue_color else R.color.blue_500)
+        bgColor = itemView.context.color(if (selected) R.color.fm_card_selected else R.color.fm_card)
         (itemView.background as? GradientDrawable)?.setColor(bgColor)
     }
 
     fun setBackground(position: Int, itemCount: Int) {
         var middle = false
         val bg = when {
+            itemCount == 1 -> R.drawable.bg_item_single
+            position == 0 -> R.drawable.bg_item_top
+            position == itemCount - 1 -> R.drawable.bg_item_bottom
             else -> {
                 middle = true
                 R.drawable.bg_item_middle

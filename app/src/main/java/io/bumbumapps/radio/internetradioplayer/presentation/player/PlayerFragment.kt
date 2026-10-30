@@ -179,11 +179,11 @@ class PlayerFragment : BaseFragment<PlayerPresenter, PlayerView>(), PlayerView {
         statusTv.setText(resId)
         if (statusTv.text==getString(R.string.status_playing) || statusTv.text==getString(R.string.metadata_buffering) ){
             playPauseBt.setImageDrawable(null)
-           playPauseBt.setBackgroundResource(R.drawable.ic_pause)
+           playPauseBt.setBackgroundResource(R.drawable.fm_btn_pause)
         }
         else{
             playPauseBt.setImageDrawable(null)
-            playPauseBt.setBackgroundResource(R.drawable.ic_play)
+            playPauseBt.setBackgroundResource(R.drawable.fm_btn_play)
         }
     }
 

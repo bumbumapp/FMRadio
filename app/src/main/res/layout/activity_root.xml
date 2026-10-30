@@ -13,14 +13,14 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/blue_500"
+        android:backgroundTint="@color/bento_surface"
         >
 
         <include layout="@layout/view_toolbar"/>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:background="@color/blue_500"
+            android:background="@color/bento_surface"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
@@ -29,7 +29,7 @@
                 android:id="@+id/rootContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/blue_500"
+                android:background="@color/bento_surface"
                 />
 
             <ProgressBar

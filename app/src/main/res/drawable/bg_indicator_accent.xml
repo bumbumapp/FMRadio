@@ -5,6 +5,6 @@
        android:thickness="4dp"
        android:useLevel="false">
 
-    <solid android:color="#D32F2F"/>
+    <solid android:color="@color/bento_primary"/>
 
 </shape>

@@ -33,7 +33,7 @@ private val android.view.View.titleTv: android.widget.TextView get() = findViewB
 abstract class GroupElementVH(itemView: View)
     : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener {
 
-    @ColorRes protected var bgColorId = R.color.grey_50
+    @ColorRes protected var bgColorId = R.color.fm_card
 
     init {
         @Suppress("LeakingThis")
@@ -80,7 +80,7 @@ class GroupTitleVH(itemView: View) : GroupElementVH(itemView) {
     override val handleView: View = itemView.titleHandleIv
 
     init {
-        bgColorId = R.color.dark_color
+        bgColorId = R.color.fm_card
     }
 
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
@@ -140,8 +140,8 @@ class GroupItemVH(itemView: View) : GroupElementVH(itemView), View.OnCreateConte
 
     override fun select(selected: Boolean) {
         bgColorId = when {
-            selected -> R.color.blue_color
-            else -> R.color.blue_500
+            selected -> R.color.fm_card_selected
+            else -> R.color.fm_card
         }
         setupBgColor()
     }

@@ -73,7 +73,7 @@ class MediaInfoViewImpl @JvmOverloads constructor(
     }
 
     override fun setRecording(isRecording: Boolean) {
-        val tint = context.color(if (isRecording) R.color.secondary else R.color.white)
+        val tint = context.color(if (isRecording) R.color.secondary else R.color.fm_fg)
         recordBt.setColorFilter(tint)
     }
 

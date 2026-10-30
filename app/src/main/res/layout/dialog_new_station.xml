@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/bento_surfaceContainerLowest"
     android:padding="20dp"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/fm_fg"
         android:text="@string/dialog_new_station_description"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:padding="4dp"

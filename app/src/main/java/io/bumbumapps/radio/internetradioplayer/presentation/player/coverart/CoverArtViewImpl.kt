@@ -50,7 +50,7 @@ class CoverArtViewImpl @JvmOverloads constructor(
                 .load(uri)
                 .transition(BitmapTransitionOptions.withCrossFade())
                 .addListener(requestListener)
-                .error(R.drawable.ic_station_3)
+                .error(R.drawable.fm_cover_placeholder)
                 .placeholder(getProgressDrawable())
                 .into(coverArtIv)
     }

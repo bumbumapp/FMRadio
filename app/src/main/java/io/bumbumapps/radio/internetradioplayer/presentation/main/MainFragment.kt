@@ -14,9 +14,9 @@ import toothpick.Toothpick
 private val android.app.Activity.mainPager: androidx.viewpager.widget.ViewPager get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainPager)
 private val androidx.fragment.app.Fragment.mainPager: androidx.viewpager.widget.ViewPager get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainPager)
 private val android.app.Dialog.mainPager: androidx.viewpager.widget.ViewPager get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainPager)
-private val android.app.Activity.mainTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
-private val androidx.fragment.app.Fragment.mainTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
-private val android.app.Dialog.mainTl: io.bumbumapps.radio.internetradioplayer.ui.FilledTabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
+private val android.app.Activity.mainTl: com.google.android.material.tabs.TabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
+private val androidx.fragment.app.Fragment.mainTl: com.google.android.material.tabs.TabLayout get() = requireView().findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
+private val android.app.Dialog.mainTl: com.google.android.material.tabs.TabLayout get() = findViewById(io.bumbumapps.radio.internetradioplayer.R.id.mainTl)
 
 /**
  * Created by Vladimir Mikhalev 23.10.2017.

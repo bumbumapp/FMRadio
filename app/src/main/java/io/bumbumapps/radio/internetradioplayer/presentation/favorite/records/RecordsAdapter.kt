@@ -94,7 +94,7 @@ class RecordVH(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreat
     private val durationTv = itemView.durationTv
     private val createdAtTv = itemView.createdAtTv
 
-    private var bgColor: Int = itemView.context.color(R.color.grey_50)
+    private var bgColor: Int = itemView.context.color(R.color.fm_card)
 
     init {
         itemView.setOnCreateContextMenuListener(this)
@@ -111,7 +111,7 @@ class RecordVH(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreat
     }
 
     fun select(selected: Boolean) {
-        bgColor = itemView.context.color(if (selected) R.color.blue_color else R.color.blue_500)
+        bgColor = itemView.context.color(if (selected) R.color.fm_card_selected else R.color.fm_card)
         (itemView.background as? GradientDrawable)?.setColor(bgColor)
     }
 

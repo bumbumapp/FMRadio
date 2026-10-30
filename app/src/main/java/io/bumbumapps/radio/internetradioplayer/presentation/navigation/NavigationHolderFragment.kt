@@ -94,10 +94,40 @@ abstract class NavigationHolderFragment : Fragment(), BackPressListener {
 
     private fun setupNavigation(screenContext: ScreenContext, animate: Boolean, isForward: Boolean) {
         dataScroll.visible(screenContext is DataScreen || screenContext is FragmentScreen)
+        setupHome(screenContext)
         setupParent(screenContext, animate, isForward)
         setupChildren(screenContext, animate, isForward)
         currentScreenContext = screenContext
         onScreenChange(screenContext)
+    }
+
+    /** Bento home: on the root screen show the hero + tiles instead of the plain child list. */
+    private fun setupHome(screenContext: ScreenContext) {
+        val root = requireView()
+        val isHome = screenContext.parent == null && screenContext.children.size >= 2
+        root.findViewById<View>(R.id.searchHome).visible(isHome)
+        root.findViewById<View>(R.id.navigationContainer).visible(!isHome)
+        childrenScroll.visible(!isHome)
+        if (!isHome) return
+        val manual = screenContext.children[0]
+        val genres = screenContext.children[1]
+        root.findViewById<View>(R.id.heroGenres).setOnClickListener { navigateTo(genres, animate = true) }
+        root.findViewById<View>(R.id.tileGenres).setOnClickListener { navigateTo(genres, animate = true) }
+        root.findViewById<View>(R.id.tileManual).setOnClickListener { navigateTo(manual, animate = true) }
+        val featured = io.bumbumapps.radio.internetradioplayer.presentation.search.HomeGenres
+                .pick(genres.children.map { it.title })
+        val tiles = listOf(R.id.genreTile0, R.id.genreTile1, R.id.genreTile2, R.id.genreTile3, R.id.genreTile4, R.id.genreTile5)
+        val labels = listOf(R.id.genreTile0Tv, R.id.genreTile1Tv, R.id.genreTile2Tv, R.id.genreTile3Tv, R.id.genreTile4Tv, R.id.genreTile5Tv)
+        tiles.forEachIndexed { i, id ->
+            val tile = root.findViewById<View>(id)
+            val title = featured.getOrNull(i)
+            val target = genres.children.firstOrNull { it.title == title }
+            tile.visible(target != null, gone = false)
+            if (target != null) {
+                root.findViewById<android.widget.TextView>(labels[i]).text = title
+                tile.setOnClickListener { navigateTo(target, animate = true) }
+            }
+        }
     }
 
     private fun setupParent(screenContext: ScreenContext, animate: Boolean, isForward: Boolean) {
@@ -144,32 +174,12 @@ abstract class NavigationHolderFragment : Fragment(), BackPressListener {
     }
 
     private fun animateParent(animate: Boolean, isForward: Boolean, onEnd: () -> Unit) {
-        if (!animate) {
-            onEnd(); return
-        }
-        val parentX = 24f * requireContext().dp
-        fun childX(view: View) = (requireView().width - view.width).toFloat()
-
-        if (isForward) {
-            parentTitleTv.visible(false)
-            screenTitleTv.animate()
-                    .setInterpolator(FastOutSlowInInterpolator())
-                    .x(parentX)
-                    .withEndAction {
-                        screenTitleTv.x = childX(screenTitleTv)
-                        parentTitleTv.visible(true)
-                        onEnd()
-                    }
-        } else {
-            screenTitleTv.visible(false)
-            parentTitleTv.animate()
-                    .setInterpolator(FastOutSlowInInterpolator())
-                    .x(childX(parentTitleTv))
-                    .withEndAction {
-                        parentTitleTv.x = parentX
-                        screenTitleTv.visible(true)
-                        onEnd()
-                    }
+        onEnd()
+        if (!animate) return
+        listOf(parentTitleTv, screenTitleTv).forEach {
+            it.alpha = 0f
+            it.translationX = (if (isForward) 16f else -16f) * requireContext().dp
+            it.animate().alpha(1f).translationX(0f).setInterpolator(FastOutSlowInInterpolator()).start()
         }
     }
 }

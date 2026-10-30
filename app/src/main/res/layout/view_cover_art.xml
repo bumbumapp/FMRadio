@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
+    android:background="@color/transparent"
+    android:padding="24dp"
     >
 
     <ImageView
@@ -17,7 +18,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_station_3"
+        android:src="@drawable/fm_cover_placeholder"
+        android:clipToOutline="true"
+        android:background="@drawable/bg_item_single"
         tools:ignore="HardcodedText"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

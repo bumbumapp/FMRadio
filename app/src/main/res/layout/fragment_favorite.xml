@@ -24,7 +24,7 @@
         app:tabBackground="@color/dark_color"
         app:tabIndicatorColor="@color/radio_accent"
         app:tabIndicatorGravity="top"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/fm_fg"
         app:tabTextColor="#66FFFFFF"
         app:tabIndicatorHeight="4dp"
         app:tabsNumber="2"
