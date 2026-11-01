@@ -17,6 +17,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://developer.huawei.com/repo/' }
         // Only for com.github.mkaflowski:Media-Style-Palette
         maven {
             url "https://jitpack.io"
